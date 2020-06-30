@@ -56,7 +56,7 @@
         "webignition/symfony-panther-webserver-runner": ">=0.3,<1"
     },
     "bin": [
-        "bin/compiler"
+        "bin/runner"
     ],
     "config": {
         "sort-packages": true
