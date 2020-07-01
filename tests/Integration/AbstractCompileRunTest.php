@@ -9,8 +9,10 @@ use Symfony\Component\Finder\Finder;
 use webignition\BasilCliRunner\Tests\Model\PhpUnitOutput;
 use webignition\BasilCliRunner\Tests\Services\ConsoleStyler;
 
-class CompileRunTest extends TestCase
+abstract class AbstractCompileRunTest extends TestCase
 {
+    abstract protected function createRunCommand(string $path): string;
+
     /**
      * @dataProvider generateAndRunDataProvider
      *
@@ -69,10 +71,5 @@ class CompileRunTest extends TestCase
             '--source=' . $source . ' ' .
             '--target=' . $target . ' ' .
             '--base-class="' . AbstractGeneratedTestCase::class . '"';
-    }
-
-    private function createRunCommand(string $path): string
-    {
-        return './bin/runner --path=' . $path;
     }
 }

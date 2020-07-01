@@ -36,8 +36,24 @@
         "test-integration": [
             "@compiler-remove",
             "@compiler-fetch",
-            "./vendor/bin/phpunit --colors=always tests/Integration/CompileRunTest.php",
+            "./vendor/bin/phpunit --colors=always tests/Integration/Bin/CompileRunTest.php",
             "@compiler-remove"
+        ],
+        "phar-dump-autoload": "@composer dump-autoload --classmap-authoritative --no-dev --no-scripts --optimize",
+        "phar-compile": "@php -dphar.readonly=0 bin/compile.php",
+        "phar-build": [
+            "rm -f build/runner.phar",
+            "@phar-dump-autoload",
+            "@phar-compile"
+        ],
+        "phar-test": [
+            "@compiler-remove",
+            "@compiler-fetch",
+            "@composer dump-autoload",
+            "cp ./build/runner.phar .",
+            "./vendor/bin/phpunit --colors=always tests/Integration/Phar",
+            "@compiler-remove",
+            "rm runner.phar"
         ]
     },
     "require": {
@@ -45,6 +61,7 @@
         "ext-json": "*",
         "phpunit/phpunit": "~9",
         "symfony/console": "^5.1",
+        "symfony/finder": "^5.1",
         "symfony/process": "^5.1",
         "webignition/base-basil-test-case": "^0.27.0",
         "webignition/basil-dom-identifier-factory": "^0.13.0",
@@ -57,7 +74,6 @@
         "phpstan/phpstan": "^0.12.0",
         "phpstan/phpstan-mockery": "^0.12.0",
         "squizlabs/php_codesniffer": "3.*",
-        "symfony/finder": "^5.1",
         "symplify/easy-coding-standard": "^8.1",
         "webignition/basil-parser": ">=0.25,<1",
         "webignition/object-reflector": ">=0.1,<1",
