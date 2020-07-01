@@ -8,10 +8,8 @@ use webignition\BasilCliRunner\Command\RunCommand;
 
 class CommandFactory
 {
-    public static function createRunCommand(): RunCommand
+    public static function createRunCommand(string $projectRootPath): RunCommand
     {
-        $projectRootPath = (new ProjectRootPathProvider())->get();
-
         return new RunCommand(
             $projectRootPath,
             new ConsoleOutputFormatter(),

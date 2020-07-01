@@ -9,6 +9,7 @@ use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\BufferedOutput;
 use webignition\BasilCliRunner\Command\RunCommand;
 use webignition\BasilCliRunner\Services\CommandFactory;
+use webignition\BasilCliRunner\Tests\Services\ProjectRootPathProvider;
 
 class RunCommandTest extends TestCase
 {
@@ -18,7 +19,8 @@ class RunCommandTest extends TestCase
     {
         parent::setUp();
 
-        $this->command = CommandFactory::createRunCommand();
+        $root = (new ProjectRootPathProvider())->get();
+        $this->command = CommandFactory::createRunCommand($root);
     }
 
     public function testRunFailurePathDoesNotExist()

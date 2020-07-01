@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace webignition\BasilCliRunner\Services;
+namespace webignition\BasilCliRunner\Tests\Services;
 
 class ProjectRootPathProvider
 {
