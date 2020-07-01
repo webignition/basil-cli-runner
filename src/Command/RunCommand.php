@@ -8,8 +8,10 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\Process;
 use webignition\BasilCliRunner\Services\ConsoleOutputFormatter;
-use webignition\BasilCliRunner\Services\ResultPrinter\ResultPrinter;
+use webignition\BasilCliRunner\Services\RunProcessFactory;
 use webignition\SymfonyConsole\TypedInput\TypedInput;
 
 class RunCommand extends Command
@@ -17,20 +19,23 @@ class RunCommand extends Command
     public const OPTION_PATH = 'path';
 
     public const RETURN_CODE_INVALID_PATH = 100;
-    public const RETURN_CODE_UNABLE_TO_OPEN_PROCESS = 200;
+    public const RETURN_CODE_UNABLE_TO_RUN_PROCESS = 200;
 
     private const NAME = 'run';
     private const DEFAULT_RELATIVE_PATH = '/generated';
 
     private string $projectRootPath;
     private ConsoleOutputFormatter $consoleOutputFormatter;
+    private RunProcessFactory $runProcessFactory;
 
     public function __construct(
         string $projectRootPath,
-        ConsoleOutputFormatter $consoleOutputFormatter
+        ConsoleOutputFormatter $consoleOutputFormatter,
+        RunProcessFactory $runProcessFactory
     ) {
         $this->projectRootPath = $projectRootPath;
         $this->consoleOutputFormatter = $consoleOutputFormatter;
+        $this->runProcessFactory = $runProcessFactory;
 
         parent::__construct();
     }
@@ -59,32 +64,22 @@ class RunCommand extends Command
             return self::RETURN_CODE_INVALID_PATH;
         }
 
-        $process = popen($this->createPhpUnitCommand($path), 'r');
+        $output->setDecorated(true);
 
-        if (is_resource($process)) {
-            $output->setDecorated(true);
+        $process = $this->runProcessFactory->create($path);
 
-            while ($buffer = fgets($process)) {
-                $formattedLine = $this->consoleOutputFormatter->format($buffer);
+        try {
+            $process->mustRun(function ($type, $buffer) use ($output) {
+                if (Process::OUT === $type) {
+                    $formattedLine = $this->consoleOutputFormatter->format($buffer);
 
-                $output->write($formattedLine);
-            }
-
-            return pclose($process);
+                    $output->write($formattedLine);
+                }
+            });
+        } catch (ProcessFailedException $processFailedException) {
+            return self::RETURN_CODE_UNABLE_TO_RUN_PROCESS;
         }
 
-        return self::RETURN_CODE_UNABLE_TO_OPEN_PROCESS;
-    }
-
-    private function createPhpUnitCommand(string $path): string
-    {
-        $phpUnitExecutablePath = $this->projectRootPath . '/vendor/bin/phpunit';
-        $phpUnitConfigurationPath = $this->projectRootPath . '/phpunit.run.xml';
-
-        return $phpUnitExecutablePath .
-            ' -c ' . $phpUnitConfigurationPath .
-            ' --colors=always ' .
-            ' --printer="' . ResultPrinter::class . '" ' .
-            $path;
+        return 0;
     }
 }
