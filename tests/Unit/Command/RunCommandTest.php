@@ -9,8 +9,8 @@ use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 use webignition\BasilCliRunner\Command\RunCommand;
 use webignition\BasilCliRunner\Services\CommandFactory;
-use webignition\BasilCliRunner\Services\ProjectRootPathProvider;
 use webignition\BasilCliRunner\Services\RunProcessFactory;
+use webignition\BasilCliRunner\Tests\Services\ProjectRootPathProvider;
 use webignition\BasilCliRunner\Tests\Unit\AbstractBaseTest;
 use webignition\ObjectReflector\ObjectReflector;
 
@@ -18,12 +18,13 @@ class RunCommandTest extends AbstractBaseTest
 {
     public function testProcessFailedToRun()
     {
-        $path = (new ProjectRootPathProvider())->get() . '/tests';
+        $root = (new ProjectRootPathProvider())->get();
+        $path = $root . '/tests';
         $input = [
             '--path' => $path,
         ];
 
-        $command = CommandFactory::createRunCommand();
+        $command = CommandFactory::createRunCommand($root);
 
         ObjectReflector::setProperty(
             $command,
