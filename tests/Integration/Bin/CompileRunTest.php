@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace webignition\BasilCliRunner\Tests\Integration;
+namespace webignition\BasilCliRunner\Tests\Integration\Bin;
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Finder\Finder;
