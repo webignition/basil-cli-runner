@@ -12,6 +12,10 @@ class CommandFactory
     {
         $projectRootPath = (new ProjectRootPathProvider())->get();
 
-        return new RunCommand($projectRootPath, new ConsoleOutputFormatter());
+        return new RunCommand(
+            $projectRootPath,
+            new ConsoleOutputFormatter(),
+            new RunProcessFactory($projectRootPath)
+        );
     }
 }
