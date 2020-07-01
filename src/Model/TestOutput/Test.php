@@ -7,12 +7,10 @@ namespace webignition\BasilCliRunner\Model\TestOutput;
 class Test
 {
     private string $testPath;
-    private string $projectRootPath;
 
-    public function __construct(string $testPath, string $projectRootPath)
+    public function __construct(string $testPath)
     {
         $this->testPath = $testPath;
-        $this->projectRootPath = $projectRootPath;
     }
 
     public function hasPath(string $path): bool
@@ -20,8 +18,8 @@ class Test
         return $this->testPath === $path;
     }
 
-    public function getRelativePath(): string
+    public function getPath(): string
     {
-        return substr($this->testPath, strlen($this->projectRootPath) + 1);
+        return $this->testPath;
     }
 }

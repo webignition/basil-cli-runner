@@ -14,12 +14,10 @@ use webignition\BaseBasilTestCase\BasilTestCaseInterface;
 use webignition\BasilCliRunner\Model\ResultPrinter\IndentedContent;
 use webignition\BasilCliRunner\Model\ResultPrinter\TestName;
 use webignition\BasilCliRunner\Model\TestOutput\Test as TestOutput;
-use webignition\BasilCliRunner\Services\ProjectRootPathProvider;
 use webignition\BasilCliRunner\Services\ResultPrinter\ModelFactory\StepFactory;
 
 class ResultPrinter extends Printer implements \PHPUnit\TextUI\ResultPrinter
 {
-    private string $projectRootPath;
     private ?TestOutput $currentTestOutput = null;
     private StepFactory $stepFactory;
 
@@ -27,7 +25,6 @@ class ResultPrinter extends Printer implements \PHPUnit\TextUI\ResultPrinter
     {
         parent::__construct($out);
 
-        $this->projectRootPath = ProjectRootPathProvider::create()->get();
         $this->stepFactory = StepFactory::createFactory();
     }
 
@@ -108,8 +105,8 @@ class ResultPrinter extends Printer implements \PHPUnit\TextUI\ResultPrinter
                 : true;
 
             if ($isNewTest) {
-                $currentTestOutput = new TestOutput($testPath, $this->projectRootPath);
-                $this->write((new TestName($currentTestOutput->getRelativePath()))->render());
+                $currentTestOutput = new TestOutput($testPath);
+                $this->write((new TestName($currentTestOutput->getPath()))->render());
                 $this->writeEmptyLine();
 
                 $this->currentTestOutput = $currentTestOutput;
