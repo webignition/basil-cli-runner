@@ -6,7 +6,6 @@ namespace webignition\BasilCliRunner\Tests\Unit\Services\ResultPrinter;
 
 use PHPUnit\Runner\BaseTestRunner;
 use webignition\BaseBasilTestCase\BasilTestCaseInterface;
-use webignition\BasilCliRunner\Services\ProjectRootPathProvider;
 use webignition\BasilCliRunner\Services\ResultPrinter\ResultPrinter;
 use webignition\BasilCliRunner\Tests\Unit\AbstractBaseTest;
 use webignition\BasilModels\StatementInterface;
@@ -63,15 +62,13 @@ class ResultPrinterTest extends AbstractBaseTest
 
     public function printerOutputDataProvider(): array
     {
-        $root = (new ProjectRootPathProvider())->get();
-
         $actionParser = ActionParser::create();
         $assertionParser = AssertionParser::create();
 
         return [
             'single test' => [
                 'testPaths' => [
-                    $root . '/test.yml',
+                    'test.yml',
                 ],
                 'stepNames' => [
                     'step one',
@@ -98,10 +95,10 @@ class ResultPrinterTest extends AbstractBaseTest
             ],
             'multiple tests' => [
                 'testPaths' => [
-                    $root . '/test1.yml',
-                    $root . '/test2.yml',
-                    $root . '/test2.yml',
-                    $root . '/test3.yml',
+                    'test1.yml',
+                    'test2.yml',
+                    'test2.yml',
+                    'test3.yml',
                 ],
                 'stepNames' => [
                     'test one step one',
