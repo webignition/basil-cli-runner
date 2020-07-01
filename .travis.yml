@@ -20,3 +20,12 @@ after_success:
 cache:
   directories:
   - "$HOME/.composer/cache/files"
+
+deploy:
+  provider: releases
+  api_key:
+    secure: MFyQsag9I/GPeCU3TKm4c7c6pL7hQ8OfbqyGFlAfTxE8d2idOrlWxN+pjH9TEQgU0MD2xvJtVDtMTr/BD7BvpP6YzyNaNQdqWS+KTC5xffZUfYzL6a8W1F33evMQBKbHyCEyly7WENMeqXpOyGPGGS3jefXA/hKvqmLQhEXWMjcB581E5F5Xf+rJCKciSEjuGBx75txthdsZf+8muykAQ/cgzZhqcn6fCldIxzObjGz27ZOLJN6XmLxa5vpqr5yCgavPUyEIjh3+SJEiQhSIJrEOa8o9pY8iGd0ntyEFZAF6DpwclHEymNqmZqzD6n/0OV5RC0K8qcWT3fE6hNMTwsr+sa6N7geHosG076SHaERai24htrnrxRo1glvFppu+jrdpYRSGlXHTfiPBu9HStPyUnV7w7m0oq+8rrCBimzR3ltB7RhkpKHoyo8mU8EdMdpP7nYKVuumCWCqaeFRM3b70hOnQSm8WdYZGll+32OuQDIsPzJWqEE1z9er+myRksj1LiW1KEcgYUAutsw3+h8dAddVFVI3vqARtyBQ1IyS2psNo8tG5R+x3DtBwpkz7nxPErKZ4OQovqf86Wdxsc2gq5uVz67z5/qpZATWNV+niIHSr0fe78VcuZK3RPNrSzKF+PA2L3amrwl8CkkbedIf8eUL70D3YoQfJeViKKbg=
+  file: build/runner.phar
+  on:
+    tags: true
+  skip_cleanup: 'true'
