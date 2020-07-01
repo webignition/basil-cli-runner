@@ -35,7 +35,7 @@ class CompileRunTest extends TestCase
             ->in($target);
 
         foreach ($finder as $file) {
-            $filename = realpath((string) $file);
+            $filename = (string) realpath((string) $file);
 
             if (file_exists($filename)) {
                 unlink($filename);
