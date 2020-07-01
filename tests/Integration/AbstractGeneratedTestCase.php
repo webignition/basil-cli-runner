@@ -1,6 +1,6 @@
 <?php
 
-namespace webignition\BasilCliRunner\Tests\Integration\Bin;
+namespace webignition\BasilCliRunner\Tests\Integration;
 
 use Facebook\WebDriver\WebDriverDimension;
 use webignition\BaseBasilTestCase\AbstractBaseTest;
@@ -8,7 +8,7 @@ use webignition\SymfonyPantherWebServerRunner\WebServerRunner;
 
 abstract class AbstractGeneratedTestCase extends AbstractBaseTest
 {
-    private const WEB_SERVER_DIR = __DIR__ . '/../../Fixtures/html';
+    private const WEB_SERVER_DIR = __DIR__ . '/../Fixtures/html';
 
     private static WebServerRunner $webServerRunner;
 

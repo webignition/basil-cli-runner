@@ -2,16 +2,23 @@
 
 declare(strict_types=1);
 
-namespace webignition\BasilCliRunner\Tests\Integration\Bin;
+namespace webignition\BasilCliRunner\Tests\Integration\Phar;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Finder\Finder;
 use webignition\BasilCliRunner\Tests\Integration\AbstractGeneratedTestCase;
 use webignition\BasilCliRunner\Tests\Model\PhpUnitOutput;
 use webignition\BasilCliRunner\Tests\Services\ConsoleStyler;
+use webignition\BasilCliRunner\Tests\Services\ProjectRootPathProvider;
 
-class CompileRunTest extends TestCase
+class PharTest extends \PHPUnit\Framework\TestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        self::assertFileExists((new ProjectRootPathProvider())->get() . '/runner.phar');
+    }
+
     /**
      * @dataProvider generateAndRunDataProvider
      *
@@ -74,6 +81,6 @@ class CompileRunTest extends TestCase
 
     private function createRunCommand(string $path): string
     {
-        return './bin/runner --path=' . $path;
+        return 'php ./runner.phar --path=' . $path;
     }
 }

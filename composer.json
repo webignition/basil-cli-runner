@@ -45,6 +45,15 @@
             "rm -f build/runner.phar",
             "@phar-dump-autoload",
             "@phar-compile"
+        ],
+        "phar-test": [
+            "@compiler-remove",
+            "@compiler-fetch",
+            "@composer dump-autoload",
+            "cp ./build/runner.phar .",
+            "./vendor/bin/phpunit --colors=always tests/Integration/Phar",
+            "@compiler-remove",
+            "rm runner.phar"
         ]
     },
     "require": {
