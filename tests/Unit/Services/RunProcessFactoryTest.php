@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace webignition\BasilCliRunner\Tests\Unit\Services;
 
-use webignition\BasilCliRunner\Services\ResultPrinter\ResultPrinter;
 use webignition\BasilCliRunner\Services\RunProcessFactory;
 use webignition\BasilCliRunner\Tests\Services\ProjectRootPathProvider;
 use webignition\BasilCliRunner\Tests\Unit\AbstractBaseTest;
+use webignition\BasilPhpUnitResultPrinter\ResultPrinter;
 
 class RunProcessFactoryTest extends AbstractBaseTest
 {

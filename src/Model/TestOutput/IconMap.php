@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace webignition\BasilCliRunner\Model\TestOutput;
 
+use webignition\BasilPhpUnitResultPrinter\Model\Status;
+
 class IconMap
 {
     private const DEFAULT = '?';

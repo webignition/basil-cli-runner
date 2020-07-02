@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace webignition\BasilCliRunner\Services;
 
-use webignition\BasilCliRunner\Model\ResultPrinter\Failure;
-use webignition\BasilCliRunner\Model\ResultPrinter\HighlightedFailure;
-use webignition\BasilCliRunner\Model\ResultPrinter\StatusIcon;
-use webignition\BasilCliRunner\Model\ResultPrinter\Success;
-use webignition\BasilCliRunner\Model\ResultPrinter\TestName;
 use webignition\BasilCliRunner\Model\TestOutput\IconMap;
-use webignition\BasilCliRunner\Model\TestOutput\Status;
+use webignition\BasilPhpUnitResultPrinter\Model\Failure;
+use webignition\BasilPhpUnitResultPrinter\Model\HighlightedFailure;
+use webignition\BasilPhpUnitResultPrinter\Model\Status;
+use webignition\BasilPhpUnitResultPrinter\Model\StatusIcon;
+use webignition\BasilPhpUnitResultPrinter\Model\Success;
+use webignition\BasilPhpUnitResultPrinter\Model\TestName;
 
 class ConsoleOutputFormatter
 {

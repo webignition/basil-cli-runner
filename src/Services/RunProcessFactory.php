@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace webignition\BasilCliRunner\Services;
 
 use Symfony\Component\Process\Process;
-use webignition\BasilCliRunner\Services\ResultPrinter\ResultPrinter;
+use webignition\BasilPhpUnitResultPrinter\ResultPrinter;
 
 class RunProcessFactory
 {
