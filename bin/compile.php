@@ -2,9 +2,25 @@
 
 declare(strict_types=1);
 
-require __DIR__ . '/../vendor/autoload.php';
+$root = (string) realpath(__DIR__ . '/..');
 
-use webignition\BasilCliRunner\PharCompiler;
+require $root . '/vendor/autoload.php';
 
-$pharCompiler = new PharCompiler();
-$pharCompiler->compile();
+use webignition\SingleCommandApplicationPharBuilder\Builder;
+
+$builder = new Builder(
+    $root,
+    'build/runner.phar',
+    'bin/runner',
+    [
+        'src',
+        'vendor/composer',
+        'vendor/myclabs',
+        'vendor/php-webdriver',
+        'vendor/phpunit/phpunit',
+        'vendor/symfony',
+        'vendor/webignition',
+    ]
+);
+
+$builder->build();
