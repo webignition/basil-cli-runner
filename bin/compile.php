@@ -14,12 +14,7 @@ $builder = new Builder(
     'bin/runner',
     [
         'src',
-        'vendor/composer',
-        'vendor/myclabs',
-        'vendor/php-webdriver',
-        'vendor/phpunit/phpunit',
-        'vendor/symfony',
-        'vendor/webignition',
+        'vendor',
     ]
 );
 

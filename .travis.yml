@@ -7,7 +7,7 @@ addons:
 
 install:
   - composer install --prefer-dist
-  - cd vendor/symfony/panther/chromedriver-bin && ./update.sh && cd ../../../..
+  - composer chromedriver-update
 
 script:
 - composer ci
@@ -15,6 +15,7 @@ script:
 
 after_success:
   - composer phar-build
+  - composer phar-test-build
   - composer phar-test
 
 cache:
