@@ -6,6 +6,7 @@ namespace webignition\BasilCliRunner\Tests\Integration\Phar;
 
 use webignition\BasilCliRunner\Tests\Integration\AbstractCompileRunTest;
 use webignition\BasilCliRunner\Tests\Services\ProjectRootPathProvider;
+use webignition\BasilPhpUnitResultPrinter\ResultPrinter;
 
 class PharTest extends AbstractCompileRunTest
 {
@@ -18,6 +19,6 @@ class PharTest extends AbstractCompileRunTest
 
     protected function createRunCommand(string $path): string
     {
-        return 'php ./runner.phar --path=' . $path;
+        return 'php ./runner.phar --path=' . $path . ' --printer="' . ResultPrinter::class . '"';
     }
 }

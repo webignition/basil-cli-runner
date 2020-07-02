@@ -16,6 +16,45 @@ use webignition\ObjectReflector\ObjectReflector;
 
 class RunCommandTest extends AbstractBaseTest
 {
+    /**
+     * @dataProvider executeFailureDataProvider
+     *
+     * @param RunCommand $command
+     * @param array<mixed> $input
+     * @param int $expectedExitCode
+     */
+    public function testExecuteFailure(RunCommand $command, array $input, int $expectedExitCode)
+    {
+        $commandTester = new CommandTester($command);
+
+        $exitCode = $commandTester->execute($input);
+        $this->assertSame($expectedExitCode, $exitCode);
+    }
+
+    public function executeFailureDataProvider(): array
+    {
+        $root = (new ProjectRootPathProvider())->get();
+        $command = CommandFactory::createRunCommand($root);
+
+        return [
+            'path does not exist' => [
+                'command' => $command,
+                'input' => [
+                    '--path' => $root . '/invalid',
+                ],
+                'expectedExitCode' => RunCommand::RETURN_CODE_INVALID_PATH,
+            ],
+            'printer class does not exist' => [
+                'command' => $command,
+                'input' => [
+                    '--path' => $root . '/tests',
+                    '--printer' => 'NonExistentClass',
+                ],
+                'expectedExitCode' => RunCommand::RETURN_CODE_PRINTER_CLASS_DOES_NOT_EXIST,
+            ],
+        ];
+    }
+
     public function testProcessFailedToRun()
     {
         $root = (new ProjectRootPathProvider())->get();
@@ -44,7 +83,7 @@ class RunCommandTest extends AbstractBaseTest
         $factory = \Mockery::mock(RunProcessFactory::class);
         $factory
             ->shouldReceive('create')
-            ->with($path)
+            ->with($path, null)
             ->andReturn($return);
 
         return $factory;

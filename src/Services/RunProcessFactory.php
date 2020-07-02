@@ -16,20 +16,26 @@ class RunProcessFactory
         $this->projectRootPath = $projectRootPath;
     }
 
-    public function create(string $path): Process
+    public function create(string $path, ?string $printer): Process
     {
-        return Process::fromShellCommandline($this->createPhpUnitCommand($path));
+        return Process::fromShellCommandline($this->createPhpUnitCommand($path, $printer));
     }
 
-    private function createPhpUnitCommand(string $path): string
+    private function createPhpUnitCommand(string $path, ?string $printer): string
     {
         $phpUnitExecutablePath = $this->projectRootPath . '/vendor/bin/phpunit';
         $phpUnitConfigurationPath = $this->projectRootPath . '/phpunit.run.xml';
 
-        return $phpUnitExecutablePath .
+        $command = $phpUnitExecutablePath .
             ' -c ' . $phpUnitConfigurationPath .
-            ' --colors=always ' .
-            ' --printer="' . ResultPrinter::class . '" ' .
-            $path;
+            ' --colors=always';
+
+        if (null !== $printer) {
+            $command .= ' --printer="' . ResultPrinter::class . '"';
+        }
+
+        $command .= ' ' . $path;
+
+        return $command;
     }
 }
