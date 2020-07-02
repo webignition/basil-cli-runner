@@ -62,7 +62,6 @@
         "symfony/console": "^5.1",
         "symfony/finder": "^5.1",
         "symfony/process": "^5.1",
-        "webignition/basil-dom-identifier-factory": "^0.13.0",
         "webignition/basil-models": "^0.56",
         "webignition/single-command-application-factory": "^0.1.0",
         "webignition/single-command-application-phar-builder": "^0.2.0",
