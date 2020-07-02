@@ -22,22 +22,44 @@ class RunProcessFactoryTest extends AbstractBaseTest
         );
     }
 
-    public function testCreate()
+    /**
+     * @dataProvider createDataProvider
+     */
+    public function testCreate(string $path, ?string $printer, string $expectedCommand)
+    {
+        $process = $this->factory->create($path, $printer);
+
+        self::assertSame($expectedCommand, $process->getCommandLine());
+    }
+
+    public function createDataProvider(): array
     {
         $root = (new ProjectRootPathProvider())->get();
         $path = 'path/to/target';
 
-        $process = $this->factory->create($path);
+        return [
+            'no printer' => [
+                'path' => 'path/to/target',
+                'printer' => null,
+                'expectedCommand' => sprintf(
+                    '%s/vendor/bin/phpunit -c %s/phpunit.run.xml --colors=always %s',
+                    $root,
+                    $root,
+                    $path
+                ),
+            ],
+            'has printer' => [
+                'path' => 'path/to/target',
+                'printer' => 'PrinterClass',
+                'expectedCommand' => sprintf(
+                    '%s/vendor/bin/phpunit -c %s/phpunit.run.xml --colors=always --printer="%s" %s',
+                    $root,
+                    $root,
+                    ResultPrinter::class,
+                    $path
+                ),
+            ],
 
-        $this->assertSame(
-            sprintf(
-                '%s/vendor/bin/phpunit -c %s/phpunit.run.xml --colors=always  --printer="%s" %s',
-                $root,
-                $root,
-                ResultPrinter::class,
-                $path
-            ),
-            $process->getCommandLine()
-        );
+        ];
     }
 }
