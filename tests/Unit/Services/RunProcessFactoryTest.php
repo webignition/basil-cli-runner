@@ -7,7 +7,6 @@ namespace webignition\BasilCliRunner\Tests\Unit\Services;
 use webignition\BasilCliRunner\Services\RunProcessFactory;
 use webignition\BasilCliRunner\Tests\Services\ProjectRootPathProvider;
 use webignition\BasilCliRunner\Tests\Unit\AbstractBaseTest;
-use webignition\BasilPhpUnitResultPrinter\ResultPrinter;
 
 class RunProcessFactoryTest extends AbstractBaseTest
 {
@@ -55,7 +54,7 @@ class RunProcessFactoryTest extends AbstractBaseTest
                     '%s/vendor/bin/phpunit -c %s/phpunit.run.xml --colors=always --printer="%s" %s',
                     $root,
                     $root,
-                    ResultPrinter::class,
+                    'PrinterClass',
                     $path
                 ),
             ],
