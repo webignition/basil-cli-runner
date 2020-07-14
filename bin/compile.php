@@ -6,16 +6,9 @@ $root = (string) realpath(__DIR__ . '/..');
 
 require $root . '/vendor/autoload.php';
 
-use webignition\SingleCommandApplicationPharBuilder\Builder;
+use webignition\BasilCliRunner\Services\PharBuilder;
 
-$builder = new Builder(
-    $root,
-    'build/runner.phar',
-    'bin/runner',
-    [
-        'src',
-        'vendor',
-    ]
-);
+$binPath = __DIR__ . '/runner';
 
-$builder->build();
+$pharBuilder = new PharBuilder();
+$pharBuilder->build($root, $binPath);
