@@ -10,10 +10,6 @@ class CommandFactory
 {
     public static function createRunCommand(string $projectRootPath): RunCommand
     {
-        return new RunCommand(
-            $projectRootPath,
-            new ConsoleOutputFormatter(),
-            new RunProcessFactory($projectRootPath)
-        );
+        return new RunCommand($projectRootPath, new RunProcessFactory($projectRootPath));
     }
 }
