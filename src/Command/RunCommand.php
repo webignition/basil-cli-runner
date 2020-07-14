@@ -10,7 +10,6 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
-use webignition\BasilCliRunner\Services\ConsoleOutputFormatter;
 use webignition\BasilCliRunner\Services\RunProcessFactory;
 use webignition\SymfonyConsole\TypedInput\TypedInput;
 
@@ -27,16 +26,11 @@ class RunCommand extends Command
     private const DEFAULT_RELATIVE_PATH = '/generated';
 
     private string $projectRootPath;
-    private ConsoleOutputFormatter $consoleOutputFormatter;
     private RunProcessFactory $runProcessFactory;
 
-    public function __construct(
-        string $projectRootPath,
-        ConsoleOutputFormatter $consoleOutputFormatter,
-        RunProcessFactory $runProcessFactory
-    ) {
+    public function __construct(string $projectRootPath, RunProcessFactory $runProcessFactory)
+    {
         $this->projectRootPath = $projectRootPath;
-        $this->consoleOutputFormatter = $consoleOutputFormatter;
         $this->runProcessFactory = $runProcessFactory;
 
         parent::__construct();
@@ -84,9 +78,7 @@ class RunCommand extends Command
         try {
             $process->mustRun(function ($type, $buffer) use ($output) {
                 if (Process::OUT === $type) {
-                    $formattedLine = $this->consoleOutputFormatter->format($buffer);
-
-                    $output->write($formattedLine);
+                    $output->write($buffer);
                 }
             });
         } catch (ProcessFailedException $processFailedException) {

@@ -6,8 +6,6 @@ namespace webignition\BasilCliRunner\Tests\Integration;
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Finder\Finder;
-use webignition\BasilCliRunner\Tests\Model\PhpUnitOutput;
-use webignition\BasilCliRunner\Tests\Services\ConsoleStyler;
 
 abstract class AbstractCompileRunTest extends TestCase
 {
@@ -18,17 +16,18 @@ abstract class AbstractCompileRunTest extends TestCase
      *
      * @param string $source
      */
-    public function testGenerateAndRun(string $source, string $target, string $expectedOutputBody)
+    public function testGenerateAndRun(string $source, string $target)
     {
         $generateCommand = $this->createGenerateCommand($source, $target);
         shell_exec($generateCommand);
 
         $runCommand = $this->createRunCommand($target);
 
-        $runCommandOutput = (string) shell_exec($runCommand);
-        $phpUnitOutput = new PhpUnitOutput($runCommandOutput);
+        $commandOutput = [];
+        $exitCode = null;
+        exec($runCommand, $commandOutput, $exitCode);
 
-        $this->assertSame($expectedOutputBody, $phpUnitOutput->getBody());
+        self::assertSame(0, $exitCode);
 
         $finder = new Finder();
         $finder
@@ -47,20 +46,10 @@ abstract class AbstractCompileRunTest extends TestCase
 
     public function generateAndRunDataProvider(): array
     {
-        $styler = new ConsoleStyler();
-
         return [
             'passing: single test' => [
                 'source' => './tests/Fixtures/basil-integration/Test/index-page-test.yml',
                 'target' => './tests/build/target',
-                'expectedOutputBody' =>
-                    $styler->bold('tests/Fixtures/basil-integration/Test/index-page-test.yml') . "\n" .
-                    '  ' . $styler->success('✓') . ' ' . $styler->success('verify page is open') . "\n" .
-                    '    ' . $styler->success('✓') . ' $page.url is "http://127.0.0.1:9080/index.html"' . "\n" .
-                    '    ' . $styler->success('✓') .
-                    ' $page.title is "Test fixture web server default document"' . "\n" .
-                    '    ' . $styler->success('✓') . ' $page.title matches "/fixture web server/"' . "\n" .
-                    "\n"
             ],
         ];
     }
