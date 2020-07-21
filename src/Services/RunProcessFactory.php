@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace webignition\BasilCliRunner\Services;
 
 use Symfony\Component\Process\Process;
+use webignition\BasilPhpUnitResultPrinter\ResultPrinter;
 
 class RunProcessFactory
 {
@@ -15,26 +16,20 @@ class RunProcessFactory
         $this->projectRootPath = $projectRootPath;
     }
 
-    public function create(string $path, ?string $printer): Process
+    public function create(string $path): Process
     {
-        return Process::fromShellCommandline($this->createPhpUnitCommand($path, $printer));
+        return Process::fromShellCommandline($this->createPhpUnitCommand($path));
     }
 
-    private function createPhpUnitCommand(string $path, ?string $printer): string
+    private function createPhpUnitCommand(string $path): string
     {
         $phpUnitExecutablePath = $this->projectRootPath . '/vendor/bin/phpunit';
         $phpUnitConfigurationPath = $this->projectRootPath . '/phpunit.run.xml';
 
-        $command = $phpUnitExecutablePath .
+        return $phpUnitExecutablePath .
             ' -c ' . $phpUnitConfigurationPath .
-            ' --colors=always';
-
-        if (null !== $printer) {
-            $command .= ' --printer="' . $printer . '"';
-        }
-
-        $command .= ' ' . $path;
-
-        return $command;
+            ' --printer="' . ResultPrinter::class . '"' .
+            ' --colors=always' .
+            ' ' . $path;
     }
 }

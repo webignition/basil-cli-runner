@@ -7,6 +7,7 @@ namespace webignition\BasilCliRunner\Tests\Unit\Services;
 use webignition\BasilCliRunner\Services\RunProcessFactory;
 use webignition\BasilCliRunner\Tests\Services\ProjectRootPathProvider;
 use webignition\BasilCliRunner\Tests\Unit\AbstractBaseTest;
+use webignition\BasilPhpUnitResultPrinter\ResultPrinter;
 
 class RunProcessFactoryTest extends AbstractBaseTest
 {
@@ -24,9 +25,9 @@ class RunProcessFactoryTest extends AbstractBaseTest
     /**
      * @dataProvider createDataProvider
      */
-    public function testCreate(string $path, ?string $printer, string $expectedCommand)
+    public function testCreate(string $path, string $expectedCommand)
     {
-        $process = $this->factory->create($path, $printer);
+        $process = $this->factory->create($path);
 
         self::assertSame($expectedCommand, $process->getCommandLine());
     }
@@ -37,28 +38,16 @@ class RunProcessFactoryTest extends AbstractBaseTest
         $path = 'path/to/target';
 
         return [
-            'no printer' => [
+            'default' => [
                 'path' => 'path/to/target',
-                'printer' => null,
                 'expectedCommand' => sprintf(
-                    '%s/vendor/bin/phpunit -c %s/phpunit.run.xml --colors=always %s',
+                    '%s/vendor/bin/phpunit -c %s/phpunit.run.xml --printer="%s" --colors=always %s',
                     $root,
                     $root,
+                    ResultPrinter::class,
                     $path
                 ),
             ],
-            'has printer' => [
-                'path' => 'path/to/target',
-                'printer' => 'PrinterClass',
-                'expectedCommand' => sprintf(
-                    '%s/vendor/bin/phpunit -c %s/phpunit.run.xml --colors=always --printer="%s" %s',
-                    $root,
-                    $root,
-                    'PrinterClass',
-                    $path
-                ),
-            ],
-
         ];
     }
 }

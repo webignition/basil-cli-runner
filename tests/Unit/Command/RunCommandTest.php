@@ -44,14 +44,6 @@ class RunCommandTest extends AbstractBaseTest
                 ],
                 'expectedExitCode' => RunCommand::RETURN_CODE_INVALID_PATH,
             ],
-            'printer class does not exist' => [
-                'command' => $command,
-                'input' => [
-                    '--path' => $root . '/tests',
-                    '--printer' => 'NonExistentClass',
-                ],
-                'expectedExitCode' => RunCommand::RETURN_CODE_PRINTER_CLASS_DOES_NOT_EXIST,
-            ],
         ];
     }
 
@@ -83,7 +75,7 @@ class RunCommandTest extends AbstractBaseTest
         $factory = \Mockery::mock(RunProcessFactory::class);
         $factory
             ->shouldReceive('create')
-            ->with($path, null)
+            ->with($path)
             ->andReturn($return);
 
         return $factory;

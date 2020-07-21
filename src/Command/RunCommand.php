@@ -16,10 +16,8 @@ use webignition\SymfonyConsole\TypedInput\TypedInput;
 class RunCommand extends Command
 {
     public const OPTION_PATH = 'path';
-    public const OPTION_PRINTER = 'printer';
 
     public const RETURN_CODE_INVALID_PATH = 100;
-    public const RETURN_CODE_PRINTER_CLASS_DOES_NOT_EXIST = 150;
     public const RETURN_CODE_UNABLE_TO_RUN_PROCESS = 200;
 
     private const NAME = 'run';
@@ -48,12 +46,6 @@ class RunCommand extends Command
                 'Absolute path to the directory of tests to run.',
                 $this->projectRootPath . self::DEFAULT_RELATIVE_PATH
             )
-            ->addOption(
-                self::OPTION_PRINTER,
-                null,
-                InputOption::VALUE_OPTIONAL,
-                'PHPUnit result printer class to use.'
-            )
         ;
     }
 
@@ -66,14 +58,9 @@ class RunCommand extends Command
             return self::RETURN_CODE_INVALID_PATH;
         }
 
-        $printer = $typedInput->getStringOption(RunCommand::OPTION_PRINTER);
-        if (null !== $printer && !class_exists($printer)) {
-            return self::RETURN_CODE_PRINTER_CLASS_DOES_NOT_EXIST;
-        }
-
         $output->setDecorated(true);
 
-        $process = $this->runProcessFactory->create($path, $printer);
+        $process = $this->runProcessFactory->create($path);
 
         try {
             $process->mustRun(function ($type, $buffer) use ($output) {
