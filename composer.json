@@ -39,27 +39,6 @@
             "@compiler-fetch",
             "./vendor/bin/phpunit --colors=always tests/Integration/Bin/CompileRunTest.php",
             "@compiler-remove"
-        ],
-        "phar-dump-autoload": "@composer dump-autoload --classmap-authoritative --no-dev --no-scripts --optimize",
-        "phar-compile": "@php -dphar.readonly=0 bin/compile.php",
-        "phar-build": [
-            "rm -rf vendor",
-            "rm -f build/runner.phar",
-            "@composer install --no-dev --prefer-dist",
-            "@phar-dump-autoload",
-            "@phar-compile",
-            "chmod +x build/runner.phar"
-        ],
-        "phar-test-build": [
-            "@composer install",
-            "@chromedriver-update",
-            "@compiler-remove",
-            "@compiler-fetch",
-            "@composer dump-autoload",
-            "cp ./build/runner.phar ."
-        ],
-        "phar-test": [
-            "./vendor/bin/phpunit --colors=always tests/Integration/Phar"
         ]
     },
     "require": {
@@ -68,7 +47,6 @@
         "symfony/console": "^5.1",
         "symfony/process": "^5.1",
         "webignition/single-command-application-factory": "^0.1.0",
-        "webignition/single-command-application-phar-builder": "^0.2.0",
         "webignition/symfony-console-typed-input": "^0.5.0"
     },
     "require-dev": {
