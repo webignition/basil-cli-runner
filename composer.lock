@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7e52c8f4dd95eb737276007047ed7065",
+    "content-hash": "c35d034dca3b2fa4a8005d31fe4010db",
     "packages": [
         {
             "name": "psr/container",
@@ -5976,12 +5976,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/auto-bind-parameter.git",
-                "reference": "cc5777ca7dfdfdf3e7cd7c172cc3489013eb78f6"
+                "reference": "a2c1823c5777be151a2b6971d559e7dcb0f03d9d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/auto-bind-parameter/zipball/cc5777ca7dfdfdf3e7cd7c172cc3489013eb78f6",
-                "reference": "cc5777ca7dfdfdf3e7cd7c172cc3489013eb78f6",
+                "url": "https://api.github.com/repos/symplify/auto-bind-parameter/zipball/a2c1823c5777be151a2b6971d559e7dcb0f03d9d",
+                "reference": "a2c1823c5777be151a2b6971d559e7dcb0f03d9d",
                 "shasum": ""
             },
             "require": {
@@ -6024,12 +6024,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/autowire-array-parameter.git",
-                "reference": "53ca25892816621187fb1b178e19037bdcd527d2"
+                "reference": "3fb9f00fcc481d3a40ca00fa3e7205228cc6a184"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/autowire-array-parameter/zipball/53ca25892816621187fb1b178e19037bdcd527d2",
-                "reference": "53ca25892816621187fb1b178e19037bdcd527d2",
+                "url": "https://api.github.com/repos/symplify/autowire-array-parameter/zipball/3fb9f00fcc481d3a40ca00fa3e7205228cc6a184",
+                "reference": "3fb9f00fcc481d3a40ca00fa3e7205228cc6a184",
                 "shasum": ""
             },
             "require": {
@@ -6071,12 +6071,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/coding-standard.git",
-                "reference": "8a5cf35242e76e077e84535303f3f1fc33b4e11c"
+                "reference": "5912aa5ecbb5ad682234416f8f5b5d49ee7cbf94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/coding-standard/zipball/8a5cf35242e76e077e84535303f3f1fc33b4e11c",
-                "reference": "8a5cf35242e76e077e84535303f3f1fc33b4e11c",
+                "url": "https://api.github.com/repos/symplify/coding-standard/zipball/5912aa5ecbb5ad682234416f8f5b5d49ee7cbf94",
+                "reference": "5912aa5ecbb5ad682234416f8f5b5d49ee7cbf94",
                 "shasum": ""
             },
             "require": {
@@ -6132,12 +6132,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/console-color-diff.git",
-                "reference": "ce182246bb9c0ecc8517ba7055a90329d54c2e6c"
+                "reference": "65bfae43b01dbeed25f5b641f13ee2aecdec28bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/console-color-diff/zipball/ce182246bb9c0ecc8517ba7055a90329d54c2e6c",
-                "reference": "ce182246bb9c0ecc8517ba7055a90329d54c2e6c",
+                "url": "https://api.github.com/repos/symplify/console-color-diff/zipball/65bfae43b01dbeed25f5b641f13ee2aecdec28bb",
+                "reference": "65bfae43b01dbeed25f5b641f13ee2aecdec28bb",
                 "shasum": ""
             },
             "require": {
@@ -6182,12 +6182,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/easy-coding-standard.git",
-                "reference": "634b91c7c66184b40693103eabb922af9d2fc68e"
+                "reference": "68550731b7e7250ff8b6b6f2d3e26d50e254700d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/easy-coding-standard/zipball/634b91c7c66184b40693103eabb922af9d2fc68e",
-                "reference": "634b91c7c66184b40693103eabb922af9d2fc68e",
+                "url": "https://api.github.com/repos/symplify/easy-coding-standard/zipball/68550731b7e7250ff8b6b6f2d3e26d50e254700d",
+                "reference": "68550731b7e7250ff8b6b6f2d3e26d50e254700d",
                 "shasum": ""
             },
             "require": {
@@ -6258,12 +6258,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/package-builder.git",
-                "reference": "91a5a58fc2e871ca84f49bb3a1b5a865723abd09"
+                "reference": "6289acc546fe65cac483c19e18b3d4e40f755f0c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/package-builder/zipball/91a5a58fc2e871ca84f49bb3a1b5a865723abd09",
-                "reference": "91a5a58fc2e871ca84f49bb3a1b5a865723abd09",
+                "url": "https://api.github.com/repos/symplify/package-builder/zipball/6289acc546fe65cac483c19e18b3d4e40f755f0c",
+                "reference": "6289acc546fe65cac483c19e18b3d4e40f755f0c",
                 "shasum": ""
             },
             "require": {
@@ -6310,12 +6310,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/parameter-name-guard.git",
-                "reference": "17189fb5e57300df0a540ff28925fcaf043b0e82"
+                "reference": "c673e833fa75941398d59294b706c6d3ac4b618b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/parameter-name-guard/zipball/17189fb5e57300df0a540ff28925fcaf043b0e82",
-                "reference": "17189fb5e57300df0a540ff28925fcaf043b0e82",
+                "url": "https://api.github.com/repos/symplify/parameter-name-guard/zipball/c673e833fa75941398d59294b706c6d3ac4b618b",
+                "reference": "c673e833fa75941398d59294b706c6d3ac4b618b",
                 "shasum": ""
             },
             "require": {
@@ -6358,12 +6358,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/phpstan-extensions.git",
-                "reference": "6afe8f3c03a177ac95306bbabad4f751b66429ab"
+                "reference": "9777a72019417f6616a9e3de151193495e464f4d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/phpstan-extensions/zipball/6afe8f3c03a177ac95306bbabad4f751b66429ab",
-                "reference": "6afe8f3c03a177ac95306bbabad4f751b66429ab",
+                "url": "https://api.github.com/repos/symplify/phpstan-extensions/zipball/9777a72019417f6616a9e3de151193495e464f4d",
+                "reference": "9777a72019417f6616a9e3de151193495e464f4d",
                 "shasum": ""
             },
             "require": {
@@ -6402,12 +6402,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/set-config-resolver.git",
-                "reference": "39fe044760e6af838053acf862e707abbf8fe751"
+                "reference": "36bad05ac3394f22b5660d5ee392ffb7f2c2fdf4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/set-config-resolver/zipball/39fe044760e6af838053acf862e707abbf8fe751",
-                "reference": "39fe044760e6af838053acf862e707abbf8fe751",
+                "url": "https://api.github.com/repos/symplify/set-config-resolver/zipball/36bad05ac3394f22b5660d5ee392ffb7f2c2fdf4",
+                "reference": "36bad05ac3394f22b5660d5ee392ffb7f2c2fdf4",
                 "shasum": ""
             },
             "require": {
@@ -6451,12 +6451,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/smart-file-system.git",
-                "reference": "962b7003f10a4ddbc200db2b1148f5ca3b90219d"
+                "reference": "8fe6cb89fa2373c16c2f63120f45b5db9001dfbf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/smart-file-system/zipball/962b7003f10a4ddbc200db2b1148f5ca3b90219d",
-                "reference": "962b7003f10a4ddbc200db2b1148f5ca3b90219d",
+                "url": "https://api.github.com/repos/symplify/smart-file-system/zipball/8fe6cb89fa2373c16c2f63120f45b5db9001dfbf",
+                "reference": "8fe6cb89fa2373c16c2f63120f45b5db9001dfbf",
                 "shasum": ""
             },
             "require": {
@@ -6535,16 +6535,16 @@
         },
         {
             "name": "webignition/base-basil-test-case",
-            "version": "0.28",
+            "version": "0.29",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webignition/base-basil-test-case.git",
-                "reference": "68532c536e27c977e5b5c29e2f7f6147dab67831"
+                "reference": "d1473fc801448798f9029db4bb6d0cb9f4480005"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webignition/base-basil-test-case/zipball/68532c536e27c977e5b5c29e2f7f6147dab67831",
-                "reference": "68532c536e27c977e5b5c29e2f7f6147dab67831",
+                "url": "https://api.github.com/repos/webignition/base-basil-test-case/zipball/d1473fc801448798f9029db4bb6d0cb9f4480005",
+                "reference": "d1473fc801448798f9029db4bb6d0cb9f4480005",
                 "shasum": ""
             },
             "require": {
@@ -6579,7 +6579,7 @@
                 }
             ],
             "homepage": "https://github.com/webignition/base-basil-test-case",
-            "time": "2020-07-09T10:56:52+00:00"
+            "time": "2020-07-16T13:35:05+00:00"
         },
         {
             "name": "webignition/basil-dom-identifier-factory",
