@@ -3,18 +3,21 @@
 CURRENT_DIRECTORY="$(dirname "$0")"
 source ${CURRENT_DIRECTORY}/.image_data.sh
 
-if ! (docker run -it ${BASE_IMAGE_NAME} ./bin/runner --version); then
-  echo "Base image --version failed"
-  exit 1
-fi
+declare -a COMMANDS=(
+  "./bin/runner --version"
+  "./bin/runner --path=bin"
+)
 
-echo "Base image --version successful"
+for COMMAND in "${COMMANDS[@]}"; do
+  EXECUTABLE="${IMAGE_NAME} ${COMMAND}"
 
-if ! (docker run -it ${BASE_IMAGE_NAME} ./bin/runner --path=bin); then
-  echo "Base image run failed"
-  exit 1
-fi
+  if ! (docker run -it ${EXECUTABLE} >> /dev/null); then
+    echo "x" ${EXECUTABLE} "failed"
 
-echo "Base image run successful"
+    exit 1
+  fi
+
+  echo "✓" ${EXECUTABLE} "successful"
+done
 
 exit 0
