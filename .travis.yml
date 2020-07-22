@@ -12,8 +12,10 @@ install:
 script:
 - composer ci
 - composer test-integration
+- ./build/build.sh
+- ./build/images_exist.sh
+- ./build/test.sh
 
 cache:
   directories:
   - "$HOME/.composer/cache/files"
-

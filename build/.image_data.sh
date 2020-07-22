@@ -1,9 +1,14 @@
 #!/usr/bin/env bash
 
 BASE_IMAGE_REPOSITORY="local/runner"
+BROWSER_IMAGE_PATTERN="smartassert/%s-runner"
+CHROME_IMAGE_REPOSITORY=$(printf ${BROWSER_IMAGE_PATTERN} "chrome")
 
 DEFAULT_TAG="${TRAVIS_BRANCH:-master}"
 TAG="${1:-${DEFAULT_TAG}}"
 
 BASE_IMAGE_NAME=${BASE_IMAGE_REPOSITORY}:${TAG}
-echo "Image name: "${BASE_IMAGE_NAME}
+CHROME_IMAGE_NAME=${CHROME_IMAGE_REPOSITORY}:${TAG}
+
+echo "Base image name:   "${BASE_IMAGE_NAME}
+echo "Chrome image name: "${CHROME_IMAGE_NAME}
