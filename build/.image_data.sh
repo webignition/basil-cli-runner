@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
-BASE_IMAGE_REPOSITORY="local/runner"
+IMAGE_REPOSITORY="smartassert/runner"
 
-DEFAULT_TAG="${TRAVIS_BRANCH:-master}"
-TAG="${1:-${DEFAULT_TAG}}"
+IMAGE_DEFAULT_TAG="${TRAVIS_BRANCH:-master}"
+IMAGE_TAG="${1:-${IMAGE_DEFAULT_TAG}}"
 
-BASE_IMAGE_NAME=${BASE_IMAGE_REPOSITORY}:${TAG}
-echo "Image name: "${BASE_IMAGE_NAME}
+IMAGE_NAME=${IMAGE_REPOSITORY}:${IMAGE_TAG}
+
+echo "Image name: "${IMAGE_NAME}

@@ -9,11 +9,15 @@ install:
   - composer install --prefer-dist
   - composer chromedriver-update
 
+before_script:
+  - ./build/build.sh
+
 script:
 - composer ci
 - composer test-integration
+- ./build/test_image_exists.sh
+- ./build/test.sh
 
 cache:
   directories:
   - "$HOME/.composer/cache/files"
-
