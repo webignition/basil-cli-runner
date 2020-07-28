@@ -5,7 +5,6 @@ source ${CURRENT_DIRECTORY}/.image_data.sh
 
 declare -a COMMANDS=(
   "./bin/runner --version"
-  "./bin/runner --path=bin"
 )
 
 for COMMAND in "${COMMANDS[@]}"; do
