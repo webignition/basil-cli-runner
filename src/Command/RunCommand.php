@@ -43,7 +43,7 @@ class RunCommand extends Command
                 self::OPTION_PATH,
                 null,
                 InputOption::VALUE_REQUIRED,
-                'Absolute path to the directory of tests to run.',
+                'Absolute path to a test to run.',
                 $this->projectRootPath . self::DEFAULT_RELATIVE_PATH
             )
         ;
@@ -54,7 +54,7 @@ class RunCommand extends Command
         $typedInput = new TypedInput($input);
 
         $path = trim((string) $typedInput->getStringOption(RunCommand::OPTION_PATH));
-        if (!is_dir($path)) {
+        if (!is_file($path)) {
             return self::RETURN_CODE_INVALID_PATH;
         }
 

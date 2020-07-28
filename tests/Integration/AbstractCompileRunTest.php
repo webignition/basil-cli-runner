@@ -6,6 +6,7 @@ namespace webignition\BasilCliRunner\Tests\Integration;
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\Yaml\Yaml;
 
 abstract class AbstractCompileRunTest extends TestCase
 {
@@ -19,9 +20,16 @@ abstract class AbstractCompileRunTest extends TestCase
     public function testGenerateAndRun(string $source, string $target)
     {
         $generateCommand = $this->createGenerateCommand($source, $target);
-        shell_exec($generateCommand);
 
-        $runCommand = $this->createRunCommand($target);
+        $generateOutput = [];
+        $generateExitCode = null;
+        exec($generateCommand, $generateOutput, $generateExitCode);
+        self::assertSame(0, $generateExitCode);
+
+        $generateOutputData = Yaml::parse(implode("\n", $generateOutput));
+        $testPath = $generateOutputData['config']['target'] . '/' . $generateOutputData['output'][0]['target'];
+
+        $runCommand = $this->createRunCommand($testPath);
 
         $commandOutput = [];
         $exitCode = null;
