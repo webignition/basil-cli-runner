@@ -3,20 +3,25 @@
 CURRENT_DIRECTORY="$(dirname "$0")"
 source ${CURRENT_DIRECTORY}/.image_data.sh
 
-declare -a COMMANDS=(
-  "./bin/runner --version"
-)
+CONTAINER_NAME="test-runner-container"
+CONTAINER_PORT="8000"
+HOST_PORT="9000"
 
-for COMMAND in "${COMMANDS[@]}"; do
-  EXECUTABLE="${IMAGE_NAME} ${COMMAND}"
+docker rm -f ${CONTAINER_NAME}
+docker create -p ${HOST_PORT}:${CONTAINER_PORT} --name ${CONTAINER_NAME} ${IMAGE_NAME}
+docker start ${CONTAINER_NAME}
 
-  if ! (docker run -it ${EXECUTABLE} >> /dev/null); then
+sleep 0.1
+
+EXECUTABLE="./bin/runner --version"
+
+OUTPUT=$(( echo ${EXECUTABLE}; echo "quit"; ) | nc localhost ${HOST_PORT})
+if ! [[ "${OUTPUT}" =~ ^"0"."run dev-master" ]]; then
     echo "x" ${EXECUTABLE} "failed"
 
     exit 1
-  fi
+fi
 
-  echo "✓" ${EXECUTABLE} "successful"
-done
+echo "✓" ${EXECUTABLE} "successful"
 
 exit 0
