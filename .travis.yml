@@ -1,22 +1,18 @@
 language: php
 php:
-- '7.4'
-
-addons:
-  chrome: stable
+  - '7.4'
 
 install:
   - composer install --prefer-dist
-  - composer chromedriver-update
 
 before_script:
   - ./build/build.sh
 
 script:
-- composer ci
-- composer test-integration
-- ./build/test_image_exists.sh
-- ./build/test.sh
+  - composer ci
+  - composer test-integration
+  - ./build/test_image_exists.sh
+  - ./build/test.sh
 
 cache:
   directories:
