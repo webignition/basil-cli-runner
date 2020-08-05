@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "01fdb08c2ffd6a3f64b5ccc79c4c768f",
+    "content-hash": "4ed65efea9fa47c0735bb72b7738d9e3",
     "packages": [
         {
             "name": "doctrine/instantiator",
@@ -3346,16 +3346,16 @@
         },
         {
             "name": "webignition/basil-models",
-            "version": "0.56",
+            "version": "0.57",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webignition/basil-models.git",
-                "reference": "9fd20dc9953d4e3395d3fbfde1104ca462ecf293"
+                "reference": "67d500daa092590652d3d93c33d8fa70dfd265e2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webignition/basil-models/zipball/9fd20dc9953d4e3395d3fbfde1104ca462ecf293",
-                "reference": "9fd20dc9953d4e3395d3fbfde1104ca462ecf293",
+                "url": "https://api.github.com/repos/webignition/basil-models/zipball/67d500daa092590652d3d93c33d8fa70dfd265e2",
+                "reference": "67d500daa092590652d3d93c33d8fa70dfd265e2",
                 "shasum": ""
             },
             "require": {
@@ -3366,6 +3366,7 @@
                 "phpstan/phpstan": "^0.12",
                 "phpunit/phpunit": "~9.0",
                 "squizlabs/php_codesniffer": "3.*",
+                "symplify/easy-coding-standard": "^8.1",
                 "webignition/object-reflector": "^0.1.0"
             },
             "type": "library",
@@ -3385,7 +3386,7 @@
                 }
             ],
             "homepage": "https://github.com/webignition/basil-models",
-            "time": "2020-06-12T17:04:26+00:00"
+            "time": "2020-07-29T13:22:30+00:00"
         },
         {
             "name": "webignition/basil-phpunit-result-printer",
@@ -7361,6 +7362,53 @@
                 }
             ],
             "time": "2020-06-25T16:39:17+00:00"
+        },
+        {
+            "name": "webignition/basil-compiler-models",
+            "version": "0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webignition/basil-compiler-models.git",
+                "reference": "76b8c5f4acd06c9498cd154fcdf38f1a87fec663"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webignition/basil-compiler-models/zipball/76b8c5f4acd06c9498cd154fcdf38f1a87fec663",
+                "reference": "76b8c5f4acd06c9498cd154fcdf38f1a87fec663",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.4",
+                "webignition/basil-models": ">=0.57,<1"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.4",
+                "php-mock/php-mock-mockery": "^1.3",
+                "phpstan/extension-installer": "^1.0",
+                "phpstan/phpstan": "^0.12.0",
+                "phpstan/phpstan-mockery": "^0.12.7",
+                "phpunit/phpunit": "^9.2",
+                "squizlabs/php_codesniffer": "3.*",
+                "symplify/easy-coding-standard": "^8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "webignition\\BasilCompilerModels\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jon Cram",
+                    "email": "webignition@gmail.com"
+                }
+            ],
+            "homepage": "https://github.com/webignition/basil-compiler-models",
+            "time": "2020-07-29T14:07:19+00:00"
         },
         {
             "name": "webignition/basil-parser",
