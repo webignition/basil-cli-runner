@@ -61,6 +61,7 @@
         "symfony/yaml": "^5.1",
         "symplify/easy-coding-standard": "^8.1",
         "webignition/base-basil-test-case": "^0.30.0",
+        "webignition/basil-compiler-models": "^0.4.0",
         "webignition/basil-parser": ">=0.25,<1",
         "webignition/object-reflector": ">=0.1,<1",
         "webignition/symfony-panther-webserver-runner": ">=0.3,<1"
