@@ -58,10 +58,12 @@ abstract class AbstractCompileRunTest extends TestCase
 
     public function generateAndRunDataProvider(): array
     {
+        $root = getcwd();
+
         return [
             'passing: single test' => [
-                'source' => './tests/Fixtures/basil-integration/Test/index-page-test.yml',
-                'target' => './tests/build/target',
+                'source' => $root . '/tests/Fixtures/basil-integration/Test/index-page-test.yml',
+                'target' => $root . '/tests/build/target',
             ],
         ];
     }
