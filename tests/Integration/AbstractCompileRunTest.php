@@ -30,7 +30,8 @@ abstract class AbstractCompileRunTest extends TestCase
         $generateOutputData = Yaml::parse(implode("\n", $generateOutput));
 
         $suiteManifest = SuiteManifest::fromArray($generateOutputData);
-        $testPath = $suiteManifest->getTestPaths()[0];
+        $testManifest = $suiteManifest->getTestManifests()[0];
+        $testPath = $testManifest->getTarget();
 
         $runCommand = $this->createRunCommand($testPath);
 
