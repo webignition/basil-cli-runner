@@ -15,7 +15,7 @@ sleep 0.1
 
 EXECUTABLE="./bin/runner --version"
 
-OUTPUT=$(( echo ${EXECUTABLE}; echo "quit"; ) | nc localhost ${HOST_PORT})
+OUTPUT=$(( echo ${EXECUTABLE}; ) | nc localhost ${HOST_PORT})
 if ! [[ "${OUTPUT}" =~ ^"0"."run dev-master" ]]; then
     echo "x" ${EXECUTABLE} "failed"
 
