@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4ed65efea9fa47c0735bb72b7738d9e3",
+    "content-hash": "62dac259cafb2bacaf2b2cb707ab4c14",
     "packages": [
         {
             "name": "doctrine/instantiator",
@@ -7365,16 +7365,16 @@
         },
         {
             "name": "webignition/basil-compiler-models",
-            "version": "0.4",
+            "version": "0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webignition/basil-compiler-models.git",
-                "reference": "76b8c5f4acd06c9498cd154fcdf38f1a87fec663"
+                "reference": "68d7dc1ad0bb9da466f198735be83144a17fad61"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webignition/basil-compiler-models/zipball/76b8c5f4acd06c9498cd154fcdf38f1a87fec663",
-                "reference": "76b8c5f4acd06c9498cd154fcdf38f1a87fec663",
+                "url": "https://api.github.com/repos/webignition/basil-compiler-models/zipball/68d7dc1ad0bb9da466f198735be83144a17fad61",
+                "reference": "68d7dc1ad0bb9da466f198735be83144a17fad61",
                 "shasum": ""
             },
             "require": {
@@ -7408,7 +7408,7 @@
                 }
             ],
             "homepage": "https://github.com/webignition/basil-compiler-models",
-            "time": "2020-07-29T14:07:19+00:00"
+            "time": "2020-08-07T15:08:21+00:00"
         },
         {
             "name": "webignition/basil-parser",
