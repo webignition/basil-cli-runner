@@ -8,6 +8,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use webignition\BasilCliRunner\Model\PhpUnitOutput;
 use webignition\BasilCliRunner\Services\RunProcessFactory;
 use webignition\SymfonyConsole\TypedInput\TypedInput;
 
@@ -65,7 +66,9 @@ class RunCommand extends Command
             return self::RETURN_CODE_UNABLE_TO_RUN_PROCESS;
         }
 
-        $output->write($process->getOutput());
+        $phpUnitOutput = new PhpUnitOutput($process->getOutput());
+
+        $output->write($phpUnitOutput->getBody());
 
         return 0;
     }
