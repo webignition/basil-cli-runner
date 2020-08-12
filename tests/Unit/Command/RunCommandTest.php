@@ -97,12 +97,16 @@ class RunCommandTest extends AbstractBaseTest
         $process = \Mockery::mock(Process::class);
 
         $process
+            ->shouldReceive('run')
+            ->andReturn(9);
+
+        $process
             ->shouldReceive('isSuccessful')
             ->andReturnFalse();
 
         $process
             ->shouldReceive('getCommandLine')
-            ->andReturn('comand line');
+            ->andReturn('command line');
 
         $process
             ->shouldReceive('getExitCode')

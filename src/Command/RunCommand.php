@@ -8,8 +8,6 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Process\Exception\ProcessFailedException;
-use Symfony\Component\Process\Process;
 use webignition\BasilCliRunner\Services\RunProcessFactory;
 use webignition\SymfonyConsole\TypedInput\TypedInput;
 
@@ -61,16 +59,13 @@ class RunCommand extends Command
         $output->setDecorated(true);
 
         $process = $this->runProcessFactory->create($path);
+        $process->run();
 
-        try {
-            $process->mustRun(function ($type, $buffer) use ($output) {
-                if (Process::OUT === $type) {
-                    $output->write($buffer);
-                }
-            });
-        } catch (ProcessFailedException $processFailedException) {
+        if (false === $process->isSuccessful()) {
             return self::RETURN_CODE_UNABLE_TO_RUN_PROCESS;
         }
+
+        $output->write($process->getOutput());
 
         return 0;
     }
