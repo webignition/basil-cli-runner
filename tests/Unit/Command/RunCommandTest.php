@@ -11,7 +11,6 @@ use Symfony\Component\Process\Process;
 use webignition\BasilCliRunner\Command\RunCommand;
 use webignition\BasilCliRunner\Services\CommandFactory;
 use webignition\BasilCliRunner\Services\RunProcessFactory;
-use webignition\BasilCliRunner\Tests\Services\ProjectRootPathProvider;
 use webignition\BasilCliRunner\Tests\Unit\AbstractBaseTest;
 use webignition\ObjectReflector\ObjectReflector;
 
@@ -39,7 +38,8 @@ class RunCommandTest extends AbstractBaseTest
 
     public function executeFailureDataProvider(): array
     {
-        $root = (new ProjectRootPathProvider())->get();
+        $root = (string) getcwd();
+
         $command = CommandFactory::createRunCommand($root);
 
         return [
@@ -55,7 +55,7 @@ class RunCommandTest extends AbstractBaseTest
 
     public function testProcessFailedToRun()
     {
-        $root = (new ProjectRootPathProvider())->get();
+        $root = (string) getcwd();
         $path = $root . '/tests/GeneratedTest.php';
         $input = [
             '--path' => $path,
