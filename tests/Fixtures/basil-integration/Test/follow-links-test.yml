@@ -6,10 +6,16 @@ config:
   assertions:
     - $page.url is "http://127.0.0.1:9080/index.html"
 
-"follow link":
+"follow link to form page":
   actions:
     - click $"#link-to-form"
 
   assertions:
     - $page.url is "http://127.0.0.1:9080/form.html"
-    - $page.title is "Form"
+
+"follow link to index page":
+  actions:
+    - click $"#link-to-index"
+
+  assertions:
+    - $page.url is "http://127.0.0.1:9080/index.html"
