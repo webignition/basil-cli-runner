@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace webignition\BasilCliRunner\Tests\Integration;
 
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Finder\Finder;
 use Symfony\Component\Yaml\Yaml;
 use webignition\BasilCompilerModels\SuiteManifest;
 
@@ -28,31 +27,21 @@ abstract class AbstractCompileRunTest extends TestCase
         self::assertSame(0, $generateExitCode);
 
         $generateOutputData = Yaml::parse(implode("\n", $generateOutput));
-
         $suiteManifest = SuiteManifest::fromArray($generateOutputData);
-        $testManifest = $suiteManifest->getTestManifests()[0];
-        $testPath = $testManifest->getTarget();
 
-        $runCommand = $this->createRunCommand($testPath);
+        foreach ($suiteManifest->getTestManifests() as $testManifest) {
+            $testPath = $testManifest->getTarget();
+            self::assertFileExists($testPath);
 
-        $commandOutput = [];
-        $exitCode = null;
-        exec($runCommand, $commandOutput, $exitCode);
+            $runCommand = $this->createRunCommand($testPath);
 
-        self::assertSame(0, $exitCode);
+            $commandOutput = [];
+            $exitCode = null;
+            exec($runCommand, $commandOutput, $exitCode);
 
-        $finder = new Finder();
-        $finder
-            ->files()
-            ->name('*.php')
-            ->in($target);
+            self::assertSame(0, $exitCode);
 
-        foreach ($finder as $file) {
-            $filename = (string) realpath((string) $file);
-
-            if (file_exists($filename)) {
-                unlink($filename);
-            }
+            unlink($testPath);
         }
     }
 
