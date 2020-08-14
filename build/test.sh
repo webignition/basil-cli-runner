@@ -16,7 +16,8 @@ sleep 0.1
 EXECUTABLE="./bin/runner --version"
 
 OUTPUT=$(( echo ${EXECUTABLE}; ) | nc localhost ${HOST_PORT})
-if ! [[ "${OUTPUT}" =~ ^"0"."run dev-master" ]]; then
+
+if ! [[ "${OUTPUT}" =~ ^"run dev-master".*"0" ]]; then
     echo "x" ${EXECUTABLE} "failed"
 
     exit 1
