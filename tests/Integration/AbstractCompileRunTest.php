@@ -20,15 +20,7 @@ abstract class AbstractCompileRunTest extends TestCase
      */
     public function testGenerateAndRun(string $source, string $target)
     {
-        $generateCommand = $this->createGenerateCommand($source, $target);
-
-        $generateOutput = [];
-        $generateExitCode = null;
-        exec($generateCommand, $generateOutput, $generateExitCode);
-        self::assertSame(0, $generateExitCode);
-
-        $generateOutputData = Yaml::parse(implode("\n", $generateOutput));
-        $suiteManifest = SuiteManifest::fromArray($generateOutputData);
+        $suiteManifest = $this->createSuiteManifest($source, $target);
 
         foreach ($suiteManifest->getTestManifests() as $testManifest) {
             $testPath = $testManifest->getTarget();
@@ -75,18 +67,10 @@ abstract class AbstractCompileRunTest extends TestCase
      */
     public function testCommandOutputIsStreamed(string $source, string $target, array $expectedBufferPatterns)
     {
-        $generateCommand = $this->createGenerateCommand($source, $target);
+        $suiteManifest = $this->createSuiteManifest($source, $target);
 
-        $generateOutput = [];
-        $generateExitCode = null;
-        exec($generateCommand, $generateOutput, $generateExitCode);
-        self::assertSame(0, $generateExitCode);
-
-        $generateOutputData = Yaml::parse(implode("\n", $generateOutput));
-        $suiteManifest = SuiteManifest::fromArray($generateOutputData);
         $testManifest = $suiteManifest->getTestManifests()[0];
         $testPath = $testManifest->getTarget();
-        self::assertFileExists($testPath);
 
         $runCommand = $this->createRunCommand($testPath);
         $runProcess = Process::fromShellCommandline($runCommand);
@@ -137,6 +121,20 @@ abstract class AbstractCompileRunTest extends TestCase
                 ],
             ],
         ];
+    }
+
+    private function createSuiteManifest(string $source, string $target): SuiteManifest
+    {
+        $generateCommand = $this->createGenerateCommand($source, $target);
+
+        $generateOutput = [];
+        $generateExitCode = null;
+        exec($generateCommand, $generateOutput, $generateExitCode);
+        self::assertSame(0, $generateExitCode);
+
+        $generateOutputData = Yaml::parse(implode("\n", $generateOutput));
+
+        return SuiteManifest::fromArray($generateOutputData);
     }
 
     private function createGenerateCommand(string $source, string $target): string
