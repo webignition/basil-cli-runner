@@ -59,6 +59,10 @@ abstract class AbstractCompileRunTest extends TestCase
                 'source' => $root . '/tests/Fixtures/basil-integration/Test/index-page-test.yml',
                 'target' => $root . '/tests/build/target',
             ],
+            'passing: multiple tests' => [
+                'source' => $root . '/tests/Fixtures/basil-integration/Test',
+                'target' => $root . '/tests/build/target',
+            ],
         ];
     }
 
