@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace webignition\BasilCliRunner\Tests\Integration;
 
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Process\Process;
 use Symfony\Component\Yaml\Yaml;
 use webignition\BasilCompilerModels\SuiteManifest;
 
@@ -34,10 +35,14 @@ abstract class AbstractCompileRunTest extends TestCase
             self::assertFileExists($testPath);
 
             $runCommand = $this->createRunCommand($testPath);
+            $runProcess = Process::fromShellCommandline($runCommand);
 
             $commandOutput = [];
-            $exitCode = null;
-            exec($runCommand, $commandOutput, $exitCode);
+            $exitCode = $runProcess->run(function ($type, $buffer) use ($commandOutput) {
+                if (Process::OUT === $type) {
+                    $commandOutput[] = $buffer;
+                }
+            });
 
             self::assertSame(0, $exitCode);
 
