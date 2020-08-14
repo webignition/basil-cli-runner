@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace webignition\BasilCliRunner\Tests\Unit\Services;
 
 use webignition\BasilCliRunner\Services\RunProcessFactory;
-use webignition\BasilCliRunner\Tests\Services\ProjectRootPathProvider;
 use webignition\BasilCliRunner\Tests\Unit\AbstractBaseTest;
 use webignition\BasilPhpUnitResultPrinter\ResultPrinter;
 
@@ -17,9 +16,7 @@ class RunProcessFactoryTest extends AbstractBaseTest
     {
         parent::setUp();
 
-        $this->factory = new RunProcessFactory(
-            (new ProjectRootPathProvider())->get()
-        );
+        $this->factory = new RunProcessFactory((string) getcwd());
     }
 
     /**
@@ -34,7 +31,7 @@ class RunProcessFactoryTest extends AbstractBaseTest
 
     public function createDataProvider(): array
     {
-        $root = (new ProjectRootPathProvider())->get();
+        $root = (string) getcwd();
         $path = 'path/to/target';
 
         return [

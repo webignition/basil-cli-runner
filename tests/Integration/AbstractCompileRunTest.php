@@ -58,7 +58,7 @@ abstract class AbstractCompileRunTest extends TestCase
 
     public function generateAndRunDataProvider(): array
     {
-        $root = getcwd();
+        $root = (string) getcwd();
 
         return [
             'passing: single test' => [
