@@ -22,14 +22,11 @@ class RunCommand extends Command
     public const RETURN_CODE_UNABLE_TO_RUN_PROCESS = 200;
 
     private const NAME = 'run';
-    private const DEFAULT_RELATIVE_PATH = '/generated';
 
-    private string $projectRootPath;
     private RunProcessFactory $runProcessFactory;
 
-    public function __construct(string $projectRootPath, RunProcessFactory $runProcessFactory)
+    public function __construct(RunProcessFactory $runProcessFactory)
     {
-        $this->projectRootPath = $projectRootPath;
         $this->runProcessFactory = $runProcessFactory;
 
         parent::__construct();
@@ -44,8 +41,7 @@ class RunCommand extends Command
                 self::OPTION_PATH,
                 null,
                 InputOption::VALUE_REQUIRED,
-                'Absolute path to a test to run.',
-                $this->projectRootPath . self::DEFAULT_RELATIVE_PATH
+                'Absolute path to a test to run.'
             )
         ;
     }
