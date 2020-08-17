@@ -2,10 +2,15 @@ language: php
 php:
   - '7.4'
 
+services:
+  - docker
+
 install:
   - composer install --prefer-dist
 
 script:
+  - docker --version
+  - docker-compose --version
   - composer ci
   - ./build/ci.sh
 
