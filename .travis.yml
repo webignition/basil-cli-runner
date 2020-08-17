@@ -2,6 +2,9 @@ language: php
 php:
   - '7.4'
 
+env:
+  - DOCKER_COMPOSE_VERSION=1.25.0
+
 services:
   - docker
 
@@ -11,7 +14,7 @@ install:
 script:
   - docker --version
   - docker-compose --version
-  - cat /etc/docker/daemon.json
+  - sudo cat /etc/docker/daemon.json
   - composer ci
   - ./build/ci.sh
 
