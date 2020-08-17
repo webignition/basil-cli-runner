@@ -11,6 +11,7 @@ install:
 script:
   - docker --version
   - docker-compose --version
+  - cat /etc/docker/daemon.json
   - composer ci
   - ./build/ci.sh
 
