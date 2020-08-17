@@ -30,15 +30,6 @@
             "@composer cs",
             "@composer static-analysis",
             "@composer test"
-        ],
-        "chromedriver-update": "cd vendor/symfony/panther/chromedriver-bin && ./update.sh && cd ../../../..",
-        "compiler-remove": "rm -f compiler.phar",
-        "compiler-fetch": "curl -L https://github.com/webignition/basil-cli-compiler/releases/latest/download/compiler.phar --output compiler.phar",
-        "test-integration": [
-            "@compiler-remove",
-            "@compiler-fetch",
-            "./vendor/bin/phpunit --colors=always tests/Integration/Bin/CompileRunTest.php",
-            "@compiler-remove"
         ]
     },
     "require": {
