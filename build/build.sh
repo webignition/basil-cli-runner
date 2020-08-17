@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-CURRENT_DIRECTORY="$(dirname "$0")"
-source ${CURRENT_DIRECTORY}/.image_data.sh
+source "$(pwd)"/build/.image_data.sh
 
 for IMAGE_NAME in "${IMAGE_NAMES[@]}"; do
   TARGET=$(echo ${IMAGE_NAME} | cut -d ':' -f 1 | cut -d '/' -f 2)
