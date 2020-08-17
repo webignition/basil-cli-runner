@@ -9,6 +9,7 @@ for IMAGE_NAME in "${IMAGE_NAMES[@]}"; do
   DOCKER_BUILDKIT=1 docker build \
    -f docker/Dockerfile \
    --build-arg browser=${IMAGE_NAME} \
+   --build-arg BUILDKIT_INLINE_CACHE=1 \
    --target=${TARGET} \
    -t ${IMAGE_NAME} .
 done
