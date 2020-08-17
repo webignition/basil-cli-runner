@@ -2,16 +2,11 @@ language: php
 php:
   - '7.4'
 
-addons:
-  chrome: stable
-
 install:
   - composer install --prefer-dist
-  - composer chromedriver-update
 
 script:
   - composer ci
-  - composer test-integration
   - ./build/ci.sh
 
 cache:

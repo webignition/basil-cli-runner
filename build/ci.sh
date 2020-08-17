@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
 
-CURRENT_DIRECTORY="$(dirname "$0")"
-
 declare -a STEPS=(
-  ${CURRENT_DIRECTORY}"/build.sh"
-  ${CURRENT_DIRECTORY}"/test_image_exists.sh"
-  ${CURRENT_DIRECTORY}"/test.sh"
+  $(pwd)"/build/build.sh"
+  $(pwd)"/build/test/images_exist.sh"
+  $(pwd)"/build/test/test.sh"
 )
 
 for STEP in "${STEPS[@]}"; do
