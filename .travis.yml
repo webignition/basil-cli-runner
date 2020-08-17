@@ -20,7 +20,6 @@ install:
   - composer install --prefer-dist
 
 script:
-  - docker --version
   - sudo cat /etc/docker/daemon.json
   - composer ci
   - ./build/ci.sh
