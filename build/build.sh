@@ -7,7 +7,6 @@ for IMAGE_NAME in "${IMAGE_NAMES[@]}"; do
   echo "Building \"${IMAGE_NAME}\" with target \"${TARGET}\""
 
   DOCKER_BUILDKIT=1 docker build \
-   -f docker/Dockerfile \
    --build-arg browser=${IMAGE_NAME} \
    --build-arg BUILDKIT_INLINE_CACHE=1 \
    --target=${TARGET} \

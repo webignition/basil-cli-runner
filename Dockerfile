@@ -11,8 +11,9 @@ WORKDIR /app
 ENV PANTHER_NO_SANDBOX=1
 
 RUN apt-get update \
-    && apt-get install -y libzip-dev nano zip \
-    && docker-php-ext-install pcntl zip > /dev/null
+    && apt-get install -y --no-install-recommends libzip-dev nano zip \
+    && docker-php-ext-install pcntl zip > /dev/null \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN composer self-update --2
@@ -46,10 +47,14 @@ CMD ./server
 
 # Chrome-specific additions to base image
 FROM base-runner AS chrome-runner
-RUN curl https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb --output chrome.deb \
-    && apt-get install -y ./chrome.deb \
-    && rm ./chrome.deb
 
+RUN curl https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb --output chrome.deb
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends ./chrome.deb \
+    && rm ./chrome.deb \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN chmod +x vendor/symfony/panther/chromedriver-bin/update.sh
 RUN cd vendor/symfony/panther/chromedriver-bin \
     && ./update.sh \
     && cd ../../../..
@@ -67,9 +72,12 @@ RUN echo 'Pin-Priority: 900' >> /etc/apt/preferences.d/99pin-unstable
 RUN echo 'Package: *' >> /etc/apt/preferences.d/99pin-unstable
 RUN echo 'Pin release a=unstable' >> /etc/apt/preferences.d/99pin-unstable
 RUN echo 'Pin-Priority: 10' >> /etc/apt/preferences.d/99pin-unstable
-RUN apt-get update
-RUN apt-get install -y -t unstable firefox libgcc-8-dev gcc-8-base libmpx2 jq
 
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends -t unstable firefox libgcc-8-dev gcc-8-base libmpx2 jq \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN chmod +x vendor/symfony/panther/geckodriver-bin/update.sh
 RUN cd vendor/symfony/panther/geckodriver-bin \
     && ./update.sh \
     && cd ../../../..
