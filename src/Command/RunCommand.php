@@ -8,7 +8,6 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 use webignition\BasilCliRunner\Services\BufferHandler;
 use webignition\BasilCliRunner\Services\RunProcessFactory;
@@ -58,20 +57,18 @@ class RunCommand extends Command
         $process = $this->runProcessFactory->create($path);
         $bufferHandler = new BufferHandler();
 
-        try {
-            $process->mustRun(function ($type, $buffer) use ($output, $bufferHandler) {
-                if (Process::OUT === $type) {
-                    $handledBuffer = $bufferHandler->handle($buffer);
+        $exitCode = $process->run(function ($type, $buffer) use ($output, $bufferHandler) {
+            if (Process::OUT === $type) {
+                $handledBuffer = $bufferHandler->handle($buffer);
 
-                    if (null !== $handledBuffer) {
-                        $output->write($buffer);
-                    }
+                if (null !== $handledBuffer) {
+                    $output->write($buffer);
                 }
-            });
-        } catch (ProcessFailedException $processFailedException) {
-            return self::RETURN_CODE_UNABLE_TO_RUN_PROCESS;
-        }
+            }
+        });
 
-        return 0;
+        return in_array($exitCode, [0, 1, 2])
+            ? 0
+            : self::RETURN_CODE_UNABLE_TO_RUN_PROCESS;
     }
 }
