@@ -7,8 +7,6 @@ TARGET_PATH="$(pwd)"/build/test/generated
 COMPILER_LOCAL_PORT=9002
 RUNNER_LOCAL_PORT=9003
 
-RUNNER_OUTPUT_PATH="$(pwd)"/build/test/runner_output
-
 function setup() {
   echo "Test::setup"
 
@@ -20,7 +18,7 @@ function setup() {
     -v "$(pwd)"/build/test/generated/chrome:/app/generated/chrome \
     -v "$(pwd)"/build/test/generated/firefox:/app/generated/firefox \
     --name test-compiler-container \
-    smartassert/basil-compiler:master
+    smartassert/basil-compiler:0.17
   docker start test-compiler-container
 
   docker rm -f test-nginx-container 2> /dev/null
@@ -44,6 +42,7 @@ function main() {
     echo "Testing ${IMAGE_NAME}"
 
     BROWSER=$(echo ${IMAGE_NAME} | cut -d '/' -f 2 | cut -d '-' -f 1)
+    RUNNER_OUTPUT_PATH="$(pwd)"/build/test/runner_output_"${BROWSER}"
 
     COMPILER_OUTPUT=$( ( echo "./compiler --source=/app/basil/${BROWSER} --target=/app/generated/${BROWSER} "; ) | nc localhost ${COMPILER_LOCAL_PORT})
 
