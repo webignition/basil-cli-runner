@@ -20,7 +20,7 @@ function setup() {
     -v "$(pwd)"/build/test/generated/chrome:/app/generated/chrome \
     -v "$(pwd)"/build/test/generated/firefox:/app/generated/firefox \
     --name test-compiler-container \
-    smartassert/basil-compiler:master
+    smartassert/basil-compiler:0.17
   docker start test-compiler-container
 
   docker rm -f test-nginx-container 2> /dev/null
