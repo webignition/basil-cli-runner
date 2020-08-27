@@ -26,7 +26,7 @@
         "cs": "./vendor/bin/ecs check --ansi",
         "static-analysis": "./vendor/bin/phpstan analyse --ansi",
         "test": "./vendor/bin/phpunit --colors=always",
-        "test-integration": "./vendor/bin/phpunit tests/Integration",
+        "test-integration": "./vendor/bin/phpunit -c phpunit.integration.xml tests/Integration",
         "ci": [
             "@composer cs",
             "@composer static-analysis",
