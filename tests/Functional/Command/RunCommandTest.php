@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace webignition\BasilRunner\Tests\Functional\Command;
+namespace webignition\BasilCliRunner\Tests\Functional\Command;
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Input\ArrayInput;

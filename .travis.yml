@@ -16,6 +16,7 @@ before_install:
   - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
   - docker info
   - composer self-update --2
+  - sed "s/master/$TRAVIS_BRANCH/g" phpunit.integration.xml
 
 install:
   - composer install --prefer-dist
@@ -23,7 +24,8 @@ install:
 script:
   - sudo cat /etc/docker/daemon.json
   - composer ci
-  - ./build/ci.sh
+  - ./build/build.sh
+  - composer test-integration
 
 cache:
   directories:
