@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "de01cb5447d784a8e14867debb707eec",
+    "content-hash": "6e2ad5836a5a9dc9e4f8e4cca444e111",
     "packages": [
         {
             "name": "doctrine/instantiator",
@@ -7371,16 +7371,16 @@
         },
         {
             "name": "webignition/basil-compiler-models",
-            "version": "0.6",
+            "version": "0.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webignition/basil-compiler-models.git",
-                "reference": "68d7dc1ad0bb9da466f198735be83144a17fad61"
+                "reference": "96991a19f904ca95ba7332d4d2f839bfcb6a0989"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webignition/basil-compiler-models/zipball/68d7dc1ad0bb9da466f198735be83144a17fad61",
-                "reference": "68d7dc1ad0bb9da466f198735be83144a17fad61",
+                "url": "https://api.github.com/repos/webignition/basil-compiler-models/zipball/96991a19f904ca95ba7332d4d2f839bfcb6a0989",
+                "reference": "96991a19f904ca95ba7332d4d2f839bfcb6a0989",
                 "shasum": ""
             },
             "require": {
@@ -7414,7 +7414,7 @@
                 }
             ],
             "homepage": "https://github.com/webignition/basil-compiler-models",
-            "time": "2020-08-07T15:08:21+00:00"
+            "time": "2020-08-17T09:43:22+00:00"
         },
         {
             "name": "webignition/basil-parser",
@@ -7462,6 +7462,54 @@
             "description": "Parses raw basil data into basic data structures",
             "homepage": "https://github.com/webignition/basil-parser",
             "time": "2020-06-12T10:03:28+00:00"
+        },
+        {
+            "name": "webignition/error-handler",
+            "version": "0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webignition/error-handler.git",
+                "reference": "fbdd0c72194bad7547258049c49a0b1a77deea86"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webignition/error-handler/zipball/fbdd0c72194bad7547258049c49a0b1a77deea86",
+                "reference": "fbdd0c72194bad7547258049c49a0b1a77deea86",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.4",
+                "psr/log": "^1.1"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.2",
+                "phpstan/extension-installer": "^1.0",
+                "phpstan/phpstan": "^0.12.0",
+                "phpstan/phpstan-mockery": "^0.12.0",
+                "phpunit/phpunit": "^9.2",
+                "squizlabs/php_codesniffer": "3.*",
+                "symplify/easy-coding-standard": "^8.0",
+                "webignition/object-reflector": "^0.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "webignition\\ErrorHandler\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jon Cram",
+                    "email": "webignition@gmail.com"
+                }
+            ],
+            "description": "PHP error handler",
+            "homepage": "https://github.com/webignition/error-handler",
+            "time": "2020-08-19T14:12:52+00:00"
         },
         {
             "name": "webignition/object-reflector",
@@ -7592,6 +7640,98 @@
             ],
             "homepage": "https://github.com/webignition/symfony-panther-webserver-runner",
             "time": "2020-05-27T14:22:32+00:00"
+        },
+        {
+            "name": "webignition/tcp-cli-proxy-client",
+            "version": "0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webignition/tcp-cli-proxy-client.git",
+                "reference": "c4b8cf26cc5028c3a9fb831cede8d5bfa54f5967"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webignition/tcp-cli-proxy-client/zipball/c4b8cf26cc5028c3a9fb831cede8d5bfa54f5967",
+                "reference": "c4b8cf26cc5028c3a9fb831cede8d5bfa54f5967",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.4",
+                "symfony/console": "^5.1",
+                "webignition/error-handler": "^0.1.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.4",
+                "php-mock/php-mock": "^2.2",
+                "php-mock/php-mock-mockery": "^1.3",
+                "phpstan/extension-installer": "^1.0",
+                "phpstan/phpstan": "^0.12.0",
+                "phpstan/phpstan-mockery": "^0.12.7",
+                "phpunit/phpunit": "^9.2",
+                "squizlabs/php_codesniffer": "3.*",
+                "symplify/easy-coding-standard": "^8.0",
+                "webignition/object-reflector": "^0.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "webignition\\TcpCliProxyClient\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jon Cram",
+                    "email": "webignition@gmail.com"
+                }
+            ],
+            "homepage": "https://github.com/webignition/tcp-cli-proxy-client",
+            "time": "2020-08-19T16:16:10+00:00"
+        },
+        {
+            "name": "webignition/tcp-cli-proxy-models",
+            "version": "0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webignition/tcp-cli-proxy-models.git",
+                "reference": "2199ed5582e988f2fdf9d65ac8592ece7655016e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webignition/tcp-cli-proxy-models/zipball/2199ed5582e988f2fdf9d65ac8592ece7655016e",
+                "reference": "2199ed5582e988f2fdf9d65ac8592ece7655016e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.4"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^0.12.0",
+                "phpunit/phpunit": "^9.2",
+                "squizlabs/php_codesniffer": "3.*",
+                "symplify/easy-coding-standard": "^8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "webignition\\TcpCliProxyModels\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jon Cram",
+                    "email": "webignition@gmail.com"
+                }
+            ],
+            "homepage": "https://github.com/webignition/tcp-cli-proxy-models",
+            "time": "2020-08-13T17:19:02+00:00"
         }
     ],
     "aliases": [],

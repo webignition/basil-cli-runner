@@ -26,6 +26,7 @@
         "cs": "./vendor/bin/ecs check --ansi",
         "static-analysis": "./vendor/bin/phpstan analyse --ansi",
         "test": "./vendor/bin/phpunit --colors=always",
+        "test-integration": "./vendor/bin/phpunit tests/Integration",
         "ci": [
             "@composer cs",
             "@composer static-analysis",
@@ -52,10 +53,12 @@
         "symfony/yaml": "^5.1",
         "symplify/easy-coding-standard": "^8.1",
         "webignition/base-basil-test-case": "^0.32.0",
-        "webignition/basil-compiler-models": "^0.6.0",
+        "webignition/basil-compiler-models": "^0.11.0",
         "webignition/basil-parser": ">=0.25,<1",
         "webignition/object-reflector": ">=0.1,<1",
-        "webignition/symfony-panther-webserver-runner": ">=0.3,<1"
+        "webignition/symfony-panther-webserver-runner": ">=0.3,<1",
+        "webignition/tcp-cli-proxy-client": "^0.7.0",
+        "webignition/tcp-cli-proxy-models": "^0.3.0"
     },
     "bin": [
         "bin/runner"
