@@ -16,7 +16,7 @@ class BrowserRunners extends AbstractProcessRunner implements \Countable
     public function __construct(string $tag)
     {
         $processResult = $this->runProcess(
-            'docker images | tail -n +2 | awk \'{print $1":"$2}\' | grep "smartassert/.*-runner:"' . $tag
+            'docker images | tail -n +2 | awk \'{print $1":"$2}\' | grep "smartassert/.*-runner:' . $tag . '"'
         );
 
         if (false === $processResult->isSuccessful()) {
