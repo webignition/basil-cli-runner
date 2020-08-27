@@ -20,6 +20,8 @@ class BrowserRunners extends AbstractProcessRunner implements \Countable
         );
 
         if (false === $processResult->isSuccessful()) {
+            var_dump($processResult->getExitCode(), $processResult->getOutput(), $processResult->getErrorOutput());
+
             throw new \RuntimeException($processResult->getErrorOutput(), $processResult->getExitCode());
         }
 
