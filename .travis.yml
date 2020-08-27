@@ -24,6 +24,7 @@ script:
   - sudo cat /etc/docker/daemon.json
   - composer ci
   - ./build/build.sh
+  - docker images
   - composer test-integration
 
 cache:
