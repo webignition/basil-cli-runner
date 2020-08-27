@@ -26,7 +26,7 @@ class BrowserRunners extends AbstractProcessRunner implements \Countable
             'docker images | tail -n +2 | awk \'{print $1":"$2}\' | grep "smartassert/.*-runner:' . $tag . '"'
         )->getOutput());
 
-        exit();
+//        exit();
 
         $processResult = $this->runProcess(
             'docker images | tail -n +2 | awk \'{print $1":"$2}\' | grep "smartassert/.*-runner:' . $tag . '"'
