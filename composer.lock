@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6e2ad5836a5a9dc9e4f8e4cca444e111",
+    "content-hash": "97dd8b0d64e8eff380b24949606b7079",
     "packages": [
         {
             "name": "doctrine/instantiator",
@@ -3212,16 +3212,16 @@
         },
         {
             "name": "webignition/base-basil-test-case",
-            "version": "0.32",
+            "version": "0.35",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webignition/base-basil-test-case.git",
-                "reference": "3ebd39323c9676882cffd5a1815dc5294e0f9042"
+                "reference": "5762b649b4780165043affa7f4715929d9cdbabc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webignition/base-basil-test-case/zipball/3ebd39323c9676882cffd5a1815dc5294e0f9042",
-                "reference": "3ebd39323c9676882cffd5a1815dc5294e0f9042",
+                "url": "https://api.github.com/repos/webignition/base-basil-test-case/zipball/5762b649b4780165043affa7f4715929d9cdbabc",
+                "reference": "5762b649b4780165043affa7f4715929d9cdbabc",
                 "shasum": ""
             },
             "require": {
@@ -3260,7 +3260,7 @@
                 }
             ],
             "homepage": "https://github.com/webignition/base-basil-test-case",
-            "time": "2020-08-25T12:03:10+00:00"
+            "time": "2020-08-28T14:19:10+00:00"
         },
         {
             "name": "webignition/basil-dom-identifier-factory",
@@ -3395,23 +3395,23 @@
         },
         {
             "name": "webignition/basil-phpunit-result-printer",
-            "version": "0.2",
+            "version": "0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webignition/basil-phpunit-result-printer.git",
-                "reference": "d8a4c033cbd9fc56bc488d168df68b3bf8605d53"
+                "reference": "27ef9f97b1c04cbbbcdd44288865df95ee3b5ec1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webignition/basil-phpunit-result-printer/zipball/d8a4c033cbd9fc56bc488d168df68b3bf8605d53",
-                "reference": "d8a4c033cbd9fc56bc488d168df68b3bf8605d53",
+                "url": "https://api.github.com/repos/webignition/basil-phpunit-result-printer/zipball/27ef9f97b1c04cbbbcdd44288865df95ee3b5ec1",
+                "reference": "27ef9f97b1c04cbbbcdd44288865df95ee3b5ec1",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.4",
                 "phpunit/phpunit": "~9",
                 "symfony/yaml": "^5.1",
-                "webignition/base-basil-test-case": ">=0.28,<1",
+                "webignition/base-basil-test-case": ">=0.35,<1",
                 "webignition/basil-dom-identifier-factory": ">=0.13,<1",
                 "webignition/basil-identifier-analyser": ">=0.7,<1",
                 "webignition/basil-models": ">=0.56,<1",
@@ -3427,7 +3427,8 @@
                 "squizlabs/php_codesniffer": "3.*",
                 "symplify/easy-coding-standard": "^8.1",
                 "webignition/basil-parser": ">=0.25,<1",
-                "webignition/object-reflector": ">=0.2,<1"
+                "webignition/object-reflector": ">=0.2,<1",
+                "webignition/yaml-document-set-parser": "^0.1.0"
             },
             "type": "library",
             "autoload": {
@@ -3446,7 +3447,7 @@
                 }
             ],
             "homepage": "https://github.com/webignition/basil-phpunit-result-printer",
-            "time": "2020-07-14T14:17:30+00:00"
+            "time": "2020-08-28T15:59:48+00:00"
         },
         {
             "name": "webignition/basil-value-extractor",
