@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "86766c4858eb96764d7a5359229daa57",
+    "content-hash": "79224423b988350e0e7ee2d191220df5",
     "packages": [
         {
             "name": "doctrine/instantiator",
@@ -3395,16 +3395,16 @@
         },
         {
             "name": "webignition/basil-phpunit-result-printer",
-            "version": "0.6",
+            "version": "0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webignition/basil-phpunit-result-printer.git",
-                "reference": "4bbbd61d57d6a3a9fe81db1ed1e3a74e22a3ae37"
+                "reference": "676143fb85984c58571848d2a05871f94153bca4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webignition/basil-phpunit-result-printer/zipball/4bbbd61d57d6a3a9fe81db1ed1e3a74e22a3ae37",
-                "reference": "4bbbd61d57d6a3a9fe81db1ed1e3a74e22a3ae37",
+                "url": "https://api.github.com/repos/webignition/basil-phpunit-result-printer/zipball/676143fb85984c58571848d2a05871f94153bca4",
+                "reference": "676143fb85984c58571848d2a05871f94153bca4",
                 "shasum": ""
             },
             "require": {
@@ -3447,7 +3447,7 @@
                 }
             ],
             "homepage": "https://github.com/webignition/basil-phpunit-result-printer",
-            "time": "2020-08-31T09:53:41+00:00"
+            "time": "2020-08-31T15:07:03+00:00"
         },
         {
             "name": "webignition/basil-value-extractor",
