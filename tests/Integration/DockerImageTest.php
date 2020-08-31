@@ -196,8 +196,6 @@ class DockerImageTest extends TestCase
 
         $content = $output->getContent();
 
-        self::assertStringContainsString('path: basil/' . $browser . '/index-page-test.yml', $content);
-
         $outputLines = explode("\n", $content);
 
         $stepPassedCount = 0;
