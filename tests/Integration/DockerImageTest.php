@@ -19,7 +19,7 @@ use webignition\TcpCliProxyModels\Output;
 
 class DockerImageTest extends TestCase
 {
-    private const COMPILER_IMAGE = 'smartassert/basil-compiler:0.18';
+    private const COMPILER_IMAGE = 'smartassert/basil-compiler:0.22';
     private const NGINX_IMAGE = 'nginx:1.19';
 
     private const COMPILER_LOCAL_PORT = 9002;
