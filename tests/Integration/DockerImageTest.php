@@ -22,8 +22,6 @@ class DockerImageTest extends TestCase
     private const COMPILER_IMAGE = 'smartassert/basil-compiler:0.23';
     private const NGINX_IMAGE = 'nginx:1.19';
 
-    private const COMPILER_LOCAL_PORT = 9002;
-    private const RUNNER_LOCAL_PORT = 9003;
     private const RUNNER_PATH = '/app/generated';
 
     private const COMPILER_CONTAINER_NAME = 'test-compiler-container';
@@ -85,7 +83,7 @@ class DockerImageTest extends TestCase
         $browserRunnerContainer = self::createBrowserRunnerContainer($browserRunnerContainerName, $browserRunner);
         self::$network->connect($browserRunnerContainer);
 
-        $browserRunnerClient = Client::createFromHostAndPort('localhost', self::RUNNER_LOCAL_PORT);
+        $browserRunnerClient = Client::createFromHostAndPort('localhost', (int) $browserRunnerContainer->getLocalPort());
 
         $browserRunnerClientOutput = new BufferedOutput();
         $browserRunnerClient = $browserRunnerClient->withOutput($browserRunnerClientOutput);
@@ -145,7 +143,6 @@ class DockerImageTest extends TestCase
         self::$compilerContainer = new CompilerContainer(
             self::COMPILER_CONTAINER_NAME,
             self::COMPILER_IMAGE,
-            self::COMPILER_LOCAL_PORT,
             self::$browserRunners
         );
 
@@ -179,7 +176,6 @@ class DockerImageTest extends TestCase
         $browserContainer = new BrowserContainer(
             $name,
             $browserRunner->getImageName(),
-            self::RUNNER_LOCAL_PORT,
             $browserRunner->getLocalTargetPath(),
             self::RUNNER_PATH
         );
