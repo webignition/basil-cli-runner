@@ -97,9 +97,9 @@ class DockerImageTest extends TestCase
         ));
 
         $outputContent = $browserRunnerClientOutput->fetch();
-        $barOutput = Output::fromString($outputContent);
-        self::assertSame(0, $barOutput->getExitCode());
-        self::assertRunnerOutput($browser, $barOutput);
+        $outputObject = Output::fromString($outputContent);
+        self::assertSame(0, $outputObject->getExitCode());
+        self::assertRunnerOutput($outputObject);
 
         $removeBrowserContainerResult = $browserRunnerContainer->remove();
         self::assertProcessResult($removeBrowserContainerResult);
@@ -190,7 +190,7 @@ class DockerImageTest extends TestCase
         return $browserContainer;
     }
 
-    private static function assertRunnerOutput(string $browser, Output $output): void
+    private static function assertRunnerOutput(Output $output): void
     {
         self::assertSame(0, $output->getExitCode(), $output->getContent());
 
