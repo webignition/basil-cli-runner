@@ -14,18 +14,13 @@ class CompilerContainer extends Container
 {
     private const SOURCE_PATH = '/app/basil/%s';
     private const TARGET_PATH = '/app/generated/%s';
-
-    private Client $tcpCliProxyClient;
-
-    public function __construct(string $name, string $image, int $localPort, BrowserRunners $browserRunners)
+    public function __construct(string $name, string $image, BrowserRunners $browserRunners)
     {
         parent::__construct(
             $name,
             $image,
-            $this->createCreateOptions($localPort, $browserRunners)
+            $this->createCreateOptions($browserRunners)
         );
-
-        $this->tcpCliProxyClient = Client::createFromHostAndPort('localhost', $localPort);
     }
 
     public function compileForBrowserRunner(BrowserRunner $browserRunner): SuiteManifest
@@ -33,7 +28,8 @@ class CompilerContainer extends Container
         $browser = $browserRunner->getBrowserName();
 
         $output = new BufferedOutput();
-        $compilerClient = $this->tcpCliProxyClient->withOutput($output);
+        $compilerClient = Client::createFromHostAndPort('localhost', $this->getLocalPort());
+        $compilerClient = $compilerClient->withOutput($output);
 
         $compilerClient->request(sprintf(
             './compiler --source=%s --target=%s',
@@ -52,15 +48,14 @@ class CompilerContainer extends Container
     }
 
     /**
-     * @param int $localPort
      * @param BrowserRunners $browserRunners
      *
      * @return string[]
      */
-    private function createCreateOptions(int $localPort, BrowserRunners $browserRunners): array
+    private function createCreateOptions(BrowserRunners $browserRunners): array
     {
         $options = [
-            '-p ' . $localPort . ':8000',
+            '-p 8000',
         ];
 
         foreach ($browserRunners->get() as $browserRunner) {

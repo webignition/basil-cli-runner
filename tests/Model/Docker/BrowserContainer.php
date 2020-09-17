@@ -9,7 +9,6 @@ class BrowserContainer extends Container
     public function __construct(
         string $name,
         string $image,
-        int $localPort,
         string $localPath,
         string $path
     ) {
@@ -17,7 +16,7 @@ class BrowserContainer extends Container
             $name,
             $image,
             [
-                '-p ' . $localPort . ':8000',
+                '-p 8000',
                 '-v ' . $localPath . ':' . $path,
             ]
         );

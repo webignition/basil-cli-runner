@@ -85,4 +85,11 @@ class Container extends AbstractProcessRunner implements ContainerInterface
             $process->getErrorOutput()
         );
     }
+
+    public function getLocalPort(): ?int
+    {
+        $portQueryOutput = exec('docker port ' . $this->name . ' | cut -d ":" -f 2');
+
+        return '' === $portQueryOutput ? null : (int) $portQueryOutput;
+    }
 }
