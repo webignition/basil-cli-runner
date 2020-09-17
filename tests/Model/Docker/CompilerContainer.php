@@ -36,7 +36,7 @@ class CompilerContainer extends Container
         $compilerClient = $this->tcpCliProxyClient->withOutput($output);
 
         $compilerClient->request(sprintf(
-            './compiler --source=%s --target=%s',
+            './compiler --source=%s/index-page-test.yml --target=%s',
             $this->getSourcePathForBrowser($browser),
             $this->getTargetPathForBrowser($browser)
         ));
