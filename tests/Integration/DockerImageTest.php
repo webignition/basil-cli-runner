@@ -83,7 +83,7 @@ class DockerImageTest extends TestCase
         $browserRunnerContainer = self::createBrowserRunnerContainer($browserRunnerContainerName, $browserRunner);
         self::$network->connect($browserRunnerContainer);
 
-        $browserRunnerClient = Client::createFromHostAndPort('localhost', $browserRunnerContainer->getLocalPort());
+        $browserRunnerClient = Client::createFromHostAndPort('localhost', (int) $browserRunnerContainer->getLocalPort());
 
         $browserRunnerClientOutput = new BufferedOutput();
         $browserRunnerClient = $browserRunnerClient->withOutput($browserRunnerClientOutput);

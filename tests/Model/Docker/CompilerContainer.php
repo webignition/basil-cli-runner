@@ -28,7 +28,7 @@ class CompilerContainer extends Container
         $browser = $browserRunner->getBrowserName();
 
         $output = new BufferedOutput();
-        $compilerClient = Client::createFromHostAndPort('localhost', $this->getLocalPort());
+        $compilerClient = Client::createFromHostAndPort('localhost', (int) $this->getLocalPort());
         $compilerClient = $compilerClient->withOutput($output);
 
         $compilerClient->request(sprintf(
