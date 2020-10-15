@@ -78,11 +78,13 @@ RUN echo 'deb http://deb.debian.org/debian/ unstable main contrib non-free' >> /
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends -t unstable firefox libgcc-8-dev gcc-8-base libmpx2 jq \
+    ; apt-get install -y --no-install-recommends -t unstable firefox \
     && rm -rf /var/lib/apt/lists/*
 
-RUN chmod +x vendor/symfony/panther/geckodriver-bin/update.sh
 RUN cd vendor/symfony/panther/geckodriver-bin \
-    && ./update.sh \
+    && curl -Ls https://github.com/mozilla/geckodriver/releases/download/v0.27.0/geckodriver-v0.27.0-linux64.tar.gz | tar xz \
+    && mv geckodriver geckodriver-linux64 \
+    && ./geckodriver-linux64 --version \
     && cd ../../../..
 
 RUN apt-get autoremove -y \
