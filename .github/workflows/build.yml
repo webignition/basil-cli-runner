@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+  pull_request:
   release:
     types:
       - published
@@ -27,24 +28,34 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
-      - name: Login to Docker Hub
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-#
-      - name: Build and push chrome image
-        uses: docker/build-push-action@v2
-        with:
-          push: true
-          tags: smartassert/chrome-runner:${{ steps.image_tag_name.outputs.value }}
-          build-args: |
-            browser=chrome
+#      - name: Login to Docker Hub
+#        uses: docker/login-action@v1
+#        with:
+#          username: ${{ secrets.DOCKERHUB_USERNAME }}
+#          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and push firefox image
-        uses: docker/build-push-action@v2
-        with:
-          push: true
-          tags: smartassert/firefox-runner:${{ steps.image_tag_name.outputs.value }}
-          build-args: |
-            browser=firefox
+      - name: Build browser-specific Dockerfiles
+        run: |
+          cd docker
+          BROWSER=chrome ./build-dockerfile.sh
+          BROWSER=firefox ./build-dockerfile.sh
+          cat chrome.Dockerfile
+          cat firefox.Dockerfile
+#
+#      - name: Build and push chrome image
+#        uses: docker/build-push-action@v2
+#        with:
+#          context: .
+#          file:
+#          push: false
+#          tags: smartassert/chrome-runner:${{ steps.image_tag_name.outputs.value }}
+#          build-args: |
+#            browser=chrome
+
+#      - name: Build and push firefox image
+#        uses: docker/build-push-action@v2
+#        with:
+#          push: true
+#          tags: smartassert/firefox-runner:${{ steps.image_tag_name.outputs.value }}
+#          build-args: |
+#            browser=firefox
