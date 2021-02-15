@@ -33,7 +33,12 @@
             "./vendor/bin/ecs check src tests --ansi --config ecs.php --fix"
         ],
         "static-analysis": "./vendor/bin/phpstan analyse --ansi",
-        "test": "./vendor/bin/phpunit --colors=always",
+        "test-unit": "./vendor/bin/phpunit --colors=always tests/Unit",
+        "test-functional": "./vendor/bin/phpunit --colors=always tests/Functional",
+        "test": [
+            "@test-unit",
+            "@test-functional"
+        ],
         "test-integration": "./vendor/bin/phpunit -c phpunit.integration.xml tests/Integration",
         "ci": [
             "@composer cs",
