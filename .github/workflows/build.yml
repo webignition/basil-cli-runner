@@ -41,14 +41,14 @@ jobs:
           BROWSER=firefox ./build-dockerfile.sh
           cat chrome.Dockerfile
           cat firefox.Dockerfile
-#
-#      - name: Build and push chrome image
-#        uses: docker/build-push-action@v2
-#        with:
-#          context: .
-#          file:
-#          push: false
-#          tags: smartassert/chrome-runner:${{ steps.image_tag_name.outputs.value }}
+
+      - name: Build and push chrome image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: docker/chrome.Dockerfile
+          push: false
+          tags: smartassert/chrome-runner:${{ steps.image_tag_name.outputs.value }}
 #          build-args: |
 #            browser=chrome
 
