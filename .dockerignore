@@ -11,3 +11,4 @@ LICENSE
 phpstan.neon
 phpunit.xml.dist
 README.md
+Dockerfile

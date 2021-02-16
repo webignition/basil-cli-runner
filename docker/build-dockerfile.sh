@@ -3,7 +3,6 @@
 set -u
 : "${BROWSER}"
 
-echo "Browser: ${BROWSER}"
-OUTPUT=$(echo "${BROWSER}.Dockerfile")
-cat template.before.Dockerfile ${BROWSER}.partial.Dockerfile template.after.Dockerfile > ./"${OUTPUT}"
-echo "Created: ${OUTPUT}"
+OUTPUT="${OUTPUT:-./${BROWSER}.Dockerfile}"
+
+cat ./docker/template.before.Dockerfile ./docker/${BROWSER}.partial.Dockerfile ./docker/template.after.Dockerfile > ${OUTPUT}
