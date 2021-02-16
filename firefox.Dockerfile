@@ -15,14 +15,14 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN composer self-update --2
 
 RUN echo "Checking runner platform requirements"
-COPY ../composer.json /app
-COPY ../composer.lock /app
+COPY composer.json /app
+COPY composer.lock /app
 RUN composer check-platform-reqs --ansi
 
 RUN echo "Installing runner"
-COPY ../bin /app/bin
-COPY ../src /app/src
-COPY ../phpunit.run.xml /app
+COPY bin /app/bin
+COPY src /app/src
+COPY phpunit.run.xml /app
 RUN composer install --prefer-dist --no-dev
 RUN composer clear-cache
 
