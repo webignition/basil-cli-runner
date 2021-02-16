@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  chrome-runner:
+    build:
+      context: ../..
+      dockerfile: chrome.Dockerfile
+    container_name: test-chrome-runner-container
+    ports:
+      - ${CHROME_RUNNER_EXPOSED_PORT}:8000
+    volumes:
+      - ${COMPILER_LOCAL_TARGET_PATH}:${COMPILER_TARGET_PATH}
+    depends_on:
+      - nginx-html
+
+  firefox-runner:
+    build:
+      context: ../..
+      dockerfile: firefox.Dockerfile
+    container_name: test-firefox-runner-container
+    ports:
+      - ${FIREFOX_RUNNER_EXPOSED_PORT}:8000
+    volumes:
+      - ${COMPILER_LOCAL_TARGET_PATH}:${COMPILER_TARGET_PATH}
+    depends_on:
+      - nginx-html
