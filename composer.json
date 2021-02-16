@@ -60,8 +60,8 @@
         "ext-json": "*",
         "symfony/console": "^5.1",
         "symfony/process": "^5.1",
-        "webignition/base-basil-test-case": "^0.40.0",
-        "webignition/basil-phpunit-result-printer": "^0.7.0",
+        "webignition/base-basil-test-case": "^0.41",
+        "webignition/basil-phpunit-result-printer": "^0.8",
         "webignition/single-command-application-factory": "^0.1.0",
         "webignition/symfony-console-typed-input": "^0.5.0"
     },
@@ -78,7 +78,7 @@
         "webignition/basil-compiler-models": "^0.11.0",
         "webignition/basil-parser": ">=0.25,<1",
         "webignition/object-reflector": ">=0.1,<1",
-        "webignition/symfony-panther-webserver-runner": ">=0.3,<1",
+        "webignition/symfony-panther-webserver-runner": ">=0.4,<1",
         "webignition/tcp-cli-proxy-client": "^0.7.0",
         "webignition/tcp-cli-proxy-models": "^0.3.0"
     },
