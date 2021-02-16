@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - master
-  pull_request:
   release:
     types:
       - published
@@ -39,5 +38,5 @@ jobs:
         with:
           context: .
           file: firefox.Dockerfile
-          push: false
+          push: true
           tags: smartassert/firefox-runner:${{ steps.image_tag_name.outputs.value }}
