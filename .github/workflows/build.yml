@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+  pull_request:
   release:
     types:
       - published
@@ -33,24 +34,28 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build browser-specific Dockerfiles
+      - name: Build chrome Dockerfile
         run: |
-          cd docker
+          rm -f Dockerfile
           BROWSER=chrome ./build-dockerfile.sh
-          BROWSER=firefox ./build-dockerfile.sh
 
       - name: Build and push chrome image
         uses: docker/build-push-action@v2
         with:
           context: .
           file: docker/chrome.Dockerfile
-          push: true
+          push: false
           tags: smartassert/chrome-runner:${{ steps.image_tag_name.outputs.value }}
+
+      - name: Build firefox Dockerfile
+        run: |
+          rm -f Dockerfile
+          BROWSER=firefox ./build-dockerfile.sh
 
       - name: Build and push firefox image
         uses: docker/build-push-action@v2
         with:
           context: .
           file: docker/firefox.Dockerfile
-          push: true
+          push: false
           tags: smartassert/firefox-runner:${{ steps.image_tag_name.outputs.value }}
