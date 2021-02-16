@@ -38,6 +38,7 @@ jobs:
         run: |
           rm -f Dockerfile
           BROWSER=chrome ./build-dockerfile.sh
+          ls -la
 
       - name: Build and push chrome image
         uses: docker/build-push-action@v2
