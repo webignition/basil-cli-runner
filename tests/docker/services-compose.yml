@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  compiler:
+    image: smartassert/basil-compiler:0.25
+    container_name: test-compiler-container
+    volumes:
+      - ${COMPILER_LOCAL_SOURCE_PATH}:${COMPILER_SOURCE_PATH}
+      - ${COMPILER_LOCAL_TARGET_PATH}:${COMPILER_TARGET_PATH}
+    ports:
+      - ${COMPILER_EXPOSED_PORT}:8000
+
+  nginx-html:
+    image: nginx
+    container_name: test-nginx-html-container
+    volumes:
+      - ${NGINX_HTML_SOURCE_PATH}:/usr/share/nginx/html
