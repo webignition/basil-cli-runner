@@ -1,4 +1,4 @@
-name: Build Docker Image
+name: Build Firefox Image
 
 on:
   push:
@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    name: Build Docker Image
+    name: Build Firefox Image
     runs-on: ubuntu-latest
 
     steps:
@@ -33,14 +33,6 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: Build and push chrome image
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          file: chrome.Dockerfile
-          push: false
-          tags: smartassert/chrome-runner:${{ steps.image_tag_name.outputs.value }}
 
       - name: Build and push firefox image
         uses: docker/build-push-action@v2
