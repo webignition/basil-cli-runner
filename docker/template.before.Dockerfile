@@ -11,7 +11,6 @@ RUN apt-get update \
     && docker-php-ext-install pcntl zip > /dev/null \
     && rm -rf /var/lib/apt/lists/*
 
-
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 COPY composer.json composer.lock /app/
 COPY bin /app/bin
@@ -22,15 +21,11 @@ RUN composer check-platform-reqs --ansi \
     && composer install --prefer-dist --no-dev \
     && composer clear-cache
 
-# Check proxy server platform requirements
 RUN curl https://raw.githubusercontent.com/webignition/docker-tcp-cli-proxy/${proxy_server_version}/composer.json --output composer.json
 RUN curl https://raw.githubusercontent.com/webignition/docker-tcp-cli-proxy/${proxy_server_version}/composer.lock --output composer.lock
 RUN composer check-platform-reqs --ansi \
     && rm composer.json \
     && rm composer.lock \
-    && rm /usr/bin/composer
-
-# Fetch proxy server
-RUN curl -L  --output ./server \
-    https://github.com/webignition/docker-tcp-cli-proxy/releases/download/${proxy_server_version}/server.phar \
+    && rm /usr/bin/composer \
+    && curl https://github.com/webignition/docker-tcp-cli-proxy/releases/download/${proxy_server_version}/server.phar -L --output ./server \
     && chmod +x ./server
