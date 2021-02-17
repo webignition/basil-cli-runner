@@ -15,9 +15,3 @@ RUN apt-get update \
 # Re-install to unbreak php zip extension
 RUN apt-get install -y --no-install-recommends -t unstable libzip-dev zlib1g-dev \
     && rm -rf /var/lib/apt/lists/*
-
-RUN cd vendor/symfony/panther/geckodriver-bin \
-    && curl -Ls https://github.com/mozilla/geckodriver/releases/download/v0.27.0/geckodriver-v0.27.0-linux64.tar.gz | tar xz \
-    && mv geckodriver geckodriver-linux64 \
-    && ./geckodriver-linux64 --version \
-    && cd ../../../..

@@ -31,8 +31,7 @@ RUN curl https://raw.githubusercontent.com/webignition/docker-tcp-cli-proxy/${pr
 RUN composer check-platform-reqs --ansi
 RUN rm composer.json
 RUN rm composer.lock
-
-#RUN rm /usr/local/bin/composer
+RUN rm /usr/bin/composer
 
 RUN echo "Fetching proxy server ${proxy_server_version}"
 RUN curl -L https://github.com/webignition/docker-tcp-cli-proxy/releases/download/${proxy_server_version}/server.phar --output ./server
@@ -42,17 +41,15 @@ RUN curl https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.d
     && apt-get install -y ./chrome.deb \
     && rm ./chrome.deb \
     && rm -rf /var/lib/apt/lists/*
+RUN mkdir drivers \
+    && cd drivers \
+    && curl -L "https://github.com/dbrekelmans/browser-driver-installer/releases/download/0.3/bdi.phar" -o bdi.phar \
+    && chmod +x bdi.phar \
+    && ./bdi.phar \
+    && rm bdi.phar
 
-RUN chmod +x vendor/symfony/panther/chromedriver-bin/update.sh
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends unzip \
-    && rm -rf /var/lib/apt/lists/* \
-    && cd vendor/symfony/panther/chromedriver-bin \
-    && ./update.sh \
-    && cd ../../../..
 RUN apt-get autoremove -y \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
-    && /usr/bin/composer clear-cache
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 CMD ./server

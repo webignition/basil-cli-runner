@@ -31,8 +31,7 @@ RUN curl https://raw.githubusercontent.com/webignition/docker-tcp-cli-proxy/${pr
 RUN composer check-platform-reqs --ansi
 RUN rm composer.json
 RUN rm composer.lock
-
-#RUN rm /usr/local/bin/composer
+RUN rm /usr/bin/composer
 
 RUN echo "Fetching proxy server ${proxy_server_version}"
 RUN curl -L https://github.com/webignition/docker-tcp-cli-proxy/releases/download/${proxy_server_version}/server.phar --output ./server
@@ -54,15 +53,15 @@ RUN apt-get update \
 # Re-install to unbreak php zip extension
 RUN apt-get install -y --no-install-recommends -t unstable libzip-dev zlib1g-dev \
     && rm -rf /var/lib/apt/lists/*
+RUN mkdir drivers \
+    && cd drivers \
+    && curl -L "https://github.com/dbrekelmans/browser-driver-installer/releases/download/0.3/bdi.phar" -o bdi.phar \
+    && chmod +x bdi.phar \
+    && ./bdi.phar \
+    && rm bdi.phar
 
-RUN cd vendor/symfony/panther/geckodriver-bin \
-    && curl -Ls https://github.com/mozilla/geckodriver/releases/download/v0.27.0/geckodriver-v0.27.0-linux64.tar.gz | tar xz \
-    && mv geckodriver geckodriver-linux64 \
-    && ./geckodriver-linux64 --version \
-    && cd ../../../..
 RUN apt-get autoremove -y \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
-    && /usr/bin/composer clear-cache
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 CMD ./server
