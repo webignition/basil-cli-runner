@@ -73,8 +73,6 @@ jobs:
 
       - name: Setup integration environment
         run: |
-          rm chrome.Dockerfile
-          rm firefox.Dockerfile
           composer image-integration-prepare
           composer image-integration-start
 
