@@ -11,8 +11,7 @@ RUN apt-get update \
     && docker-php-ext-install pcntl zip > /dev/null \
     && rm -rf /var/lib/apt/lists/*
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-RUN composer self-update --2
+COPY --from=composer /usr/bin/composer /usr/bin/composer
 
 RUN echo "Checking runner platform requirements"
 COPY composer.json /app
@@ -33,7 +32,7 @@ RUN composer check-platform-reqs --ansi
 RUN rm composer.json
 RUN rm composer.lock
 
-RUN rm /usr/local/bin/composer
+#RUN rm /usr/local/bin/composer
 
 RUN echo "Fetching proxy server ${proxy_server_version}"
 RUN curl -L https://github.com/webignition/docker-tcp-cli-proxy/releases/download/${proxy_server_version}/server.phar --output ./server
@@ -63,6 +62,7 @@ RUN cd vendor/symfony/panther/geckodriver-bin \
     && cd ../../../..
 RUN apt-get autoremove -y \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+    && /usr/bin/composer clear-cache
 
 CMD ./server
