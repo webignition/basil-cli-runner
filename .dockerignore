@@ -1,13 +1,9 @@
-/build
-/docker
-/tests
-/vendor
-.gitignore
-.phpcs.xml
-.travis.yml
-ecs.yaml
-LICENSE
-phpstan.neon
-phpunit.xml.dist
-README.md
-Dockerfile
+# Ignore everything
+**
+
+# Allow source
+!/bin/runner
+!/composer.json
+!/composer.lock
+!/phpunit.run.xml
+!/src
