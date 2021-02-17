@@ -11,4 +11,6 @@ RUN echo 'deb http://deb.debian.org/debian/ unstable main contrib non-free' >> /
     # The above installation of firefox uninstalls libzip-dev, zlib1g-dev
     # Re-install to unbreak php zip extension
     && apt-get install -y --no-install-recommends -t unstable libzip-dev zlib1g-dev \
-    && rm -rf /var/lib/apt/lists/*
+    && apt-get autoremove -y \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

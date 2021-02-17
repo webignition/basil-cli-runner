@@ -9,7 +9,9 @@ ENV PANTHER_NO_SANDBOX=1
 RUN apt-get update \
     && apt-get install -y --no-install-recommends libzip-dev nano zip \
     && docker-php-ext-install pcntl zip > /dev/null \
-    && rm -rf /var/lib/apt/lists/*
+    && apt-get autoremove -y \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 COPY composer.json composer.lock /app/
