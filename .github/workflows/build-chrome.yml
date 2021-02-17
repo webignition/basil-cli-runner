@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+  pull_request:
   release:
     types:
       - published
@@ -24,6 +25,10 @@ jobs:
         run: |
           [[ ! -z "$RELEASE_TAG_NAME" ]] && echo "::set-output name=value::$RELEASE_TAG_NAME" || echo "::set-output name=value::master"
 
+      - name: Generate Dockerfile
+        run: |
+          rm chrome.Dockerfile
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
@@ -38,5 +43,5 @@ jobs:
         with:
           context: .
           file: chrome.Dockerfile
-          push: true
+          push: false
           tags: smartassert/chrome-runner:${{ steps.image_tag_name.outputs.value }}
