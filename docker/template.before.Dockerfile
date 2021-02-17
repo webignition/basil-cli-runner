@@ -27,8 +27,8 @@ RUN composer install --prefer-dist --no-dev \
 RUN echo "Checking proxy server platform requirements ${proxy_server_version}"
 RUN curl https://raw.githubusercontent.com/webignition/docker-tcp-cli-proxy/${proxy_server_version}/composer.json --output composer.json
 RUN curl https://raw.githubusercontent.com/webignition/docker-tcp-cli-proxy/${proxy_server_version}/composer.lock --output composer.lock
-RUN composer check-platform-reqs --ansi
-RUN rm composer.json \
+RUN composer check-platform-reqs --ansi \
+    && rm composer.json \
     && rm composer.lock \
     && rm /usr/bin/composer
 
