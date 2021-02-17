@@ -11,17 +11,15 @@ RUN apt-get update \
     && docker-php-ext-install pcntl zip > /dev/null \
     && rm -rf /var/lib/apt/lists/*
 
+
 COPY --from=composer /usr/bin/composer /usr/bin/composer
-
-# Check runner platform requirements
 COPY composer.json composer.lock /app/
-RUN composer check-platform-reqs --ansi
-
-# Install runner
 COPY bin /app/bin
 COPY src /app/src
 COPY phpunit.run.xml /app
-RUN composer install --prefer-dist --no-dev \
+
+RUN composer check-platform-reqs --ansi \
+    && composer install --prefer-dist --no-dev \
     && composer clear-cache
 
 # Check proxy server platform requirements
