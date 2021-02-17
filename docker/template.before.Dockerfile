@@ -33,5 +33,6 @@ RUN composer check-platform-reqs --ansi \
     && rm /usr/bin/composer
 
 RUN echo "Fetching proxy server ${proxy_server_version}"
-RUN curl -L https://github.com/webignition/docker-tcp-cli-proxy/releases/download/${proxy_server_version}/server.phar --output ./server
-RUN chmod +x ./server
+RUN curl -L  --output ./server \
+    https://github.com/webignition/docker-tcp-cli-proxy/releases/download/${proxy_server_version}/server.phar \
+    && chmod +x ./server
