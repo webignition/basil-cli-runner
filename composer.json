@@ -43,6 +43,7 @@
         "integration-status": "docker-compose -f tests/docker/services-compose.yml ps",
         "integration-stop": "docker-compose -f tests/docker/services-compose.yml stop",
         "integration-destroy": "docker-compose -f tests/docker/services-compose.yml down",
+        "image-integration-prepare": "./docker/build-dockerfiles.sh",
         "image-integration-build": "docker-compose -f tests/docker/services-compose.yml -f tests/docker/self-compose.yml build",
         "image-integration-start": "docker-compose -f tests/docker/services-compose.yml -f tests/docker/self-compose.yml up -d",
         "image-integration-status": "docker-compose -f tests/docker/services-compose.yml -f tests/docker/self-compose.yml ps",

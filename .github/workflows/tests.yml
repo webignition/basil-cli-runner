@@ -72,7 +72,9 @@ jobs:
           args: --ignore-platform-reqs --quiet
 
       - name: Setup integration environment
-        run: composer image-integration-start
+        run: |
+          composer image-integration-prepare
+          composer image-integration-start
 
       - name: Run tests
         run: composer test-integration

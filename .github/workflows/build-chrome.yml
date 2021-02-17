@@ -24,6 +24,9 @@ jobs:
         run: |
           [[ ! -z "$RELEASE_TAG_NAME" ]] && echo "::set-output name=value::$RELEASE_TAG_NAME" || echo "::set-output name=value::master"
 
+      - name: Generate Dockerfile
+        run: BROWSER=chrome ./docker/build-dockerfile.sh
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
