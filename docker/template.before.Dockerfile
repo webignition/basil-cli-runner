@@ -13,18 +13,18 @@ RUN apt-get update \
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
-RUN echo "Checking runner platform requirements"
+# Check runner platform requirements
 COPY composer.json composer.lock /app/
 RUN composer check-platform-reqs --ansi
 
-RUN echo "Installing runner"
+# Install runner
 COPY bin /app/bin
 COPY src /app/src
 COPY phpunit.run.xml /app
 RUN composer install --prefer-dist --no-dev \
     && composer clear-cache
 
-RUN echo "Checking proxy server platform requirements ${proxy_server_version}"
+# Check proxy server platform requirements
 RUN curl https://raw.githubusercontent.com/webignition/docker-tcp-cli-proxy/${proxy_server_version}/composer.json --output composer.json
 RUN curl https://raw.githubusercontent.com/webignition/docker-tcp-cli-proxy/${proxy_server_version}/composer.lock --output composer.lock
 RUN composer check-platform-reqs --ansi \
@@ -32,7 +32,7 @@ RUN composer check-platform-reqs --ansi \
     && rm composer.lock \
     && rm /usr/bin/composer
 
-RUN echo "Fetching proxy server ${proxy_server_version}"
+# Fetch proxy server
 RUN curl -L  --output ./server \
     https://github.com/webignition/docker-tcp-cli-proxy/releases/download/${proxy_server_version}/server.phar \
     && chmod +x ./server
