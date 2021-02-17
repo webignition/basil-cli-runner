@@ -21,8 +21,8 @@ RUN echo "Installing runner"
 COPY bin /app/bin
 COPY src /app/src
 COPY phpunit.run.xml /app
-RUN composer install --prefer-dist --no-dev
-RUN composer clear-cache
+RUN composer install --prefer-dist --no-dev \
+    && composer clear-cache
 
 RUN echo "Checking proxy server platform requirements ${proxy_server_version}"
 RUN curl https://raw.githubusercontent.com/webignition/docker-tcp-cli-proxy/${proxy_server_version}/composer.json --output composer.json
