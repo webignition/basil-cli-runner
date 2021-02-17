@@ -14,8 +14,7 @@ RUN apt-get update \
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
 RUN echo "Checking runner platform requirements"
-COPY composer.json /app
-COPY composer.lock /app
+COPY composer.json composer.lock /app/
 RUN composer check-platform-reqs --ansi
 
 RUN echo "Installing runner"
