@@ -1,4 +1,3 @@
-FROM base-runner AS firefox-runner
 RUN echo 'deb http://deb.debian.org/debian/ unstable main contrib non-free' >> /etc/apt/sources.list \
     && echo 'Package: *' >> /etc/apt/preferences.d/99pin-unstable \
     && echo 'Pin: release a=stable' >> /etc/apt/preferences.d/99pin-unstable \

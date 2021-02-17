@@ -1,4 +1,4 @@
-FROM php:7.4-cli-buster as base-runner
+FROM php:7.4-cli-buster
 
 ARG proxy_server_version=0.5
 
