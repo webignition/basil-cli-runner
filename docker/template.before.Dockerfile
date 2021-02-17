@@ -14,10 +14,9 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
-COPY composer.json composer.lock /app/
+COPY composer.json composer.lock phpunit.run.xml /app/
 COPY bin /app/bin
 COPY src /app/src
-COPY phpunit.run.xml /app
 
 RUN composer check-platform-reqs --ansi \
     && composer install --prefer-dist --no-dev \
