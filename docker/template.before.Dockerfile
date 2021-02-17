@@ -21,11 +21,10 @@ COPY phpunit.run.xml /app
 
 RUN composer check-platform-reqs --ansi \
     && composer install --prefer-dist --no-dev \
-    && composer clear-cache
-
-RUN curl https://raw.githubusercontent.com/webignition/docker-tcp-cli-proxy/${proxy_server_version}/composer.json --output composer.json
-RUN curl https://raw.githubusercontent.com/webignition/docker-tcp-cli-proxy/${proxy_server_version}/composer.lock --output composer.lock
-RUN composer check-platform-reqs --ansi \
+    && composer clear-cache \
+    && curl https://raw.githubusercontent.com/webignition/docker-tcp-cli-proxy/${proxy_server_version}/composer.json --output composer.json \
+    && curl https://raw.githubusercontent.com/webignition/docker-tcp-cli-proxy/${proxy_server_version}/composer.lock --output composer.lock \
+    && composer check-platform-reqs --ansi \
     && rm composer.json \
     && rm composer.lock \
     && rm /usr/bin/composer \
