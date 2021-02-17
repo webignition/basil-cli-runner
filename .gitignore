@@ -1,4 +1,4 @@
 /vendor/
 .phpunit.result.cache
 compiler.phar
-Dockerfile
+*Dockerfile
