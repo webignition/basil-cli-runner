@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace webignition\BasilCliRunner\Tests\Integration;
 
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\Yaml\Yaml;
 use webignition\BasilCompilerModels\SuiteManifest;
 use webignition\TcpCliProxyClient\Client;
+use webignition\TcpCliProxyClient\HandlerFactory;
 use webignition\TcpCliProxyModels\Output;
 
 class DockerImageTest extends TestCase
@@ -34,17 +34,18 @@ class DockerImageTest extends TestCase
         $testPath = $testManifest->getTarget();
 
         $browserRunnerClient = Client::createFromHostAndPort('localhost', $runnerPort);
+        $browserRunnerClientOutput = '';
 
-        $browserRunnerClientOutput = new BufferedOutput();
-        $browserRunnerClient = $browserRunnerClient->withOutput($browserRunnerClientOutput);
+        $browserRunnerClient->request(
+            sprintf(
+                './bin/runner --path=%s/%s',
+                self::COMPILER_TARGET_PATH,
+                basename($testPath)
+            ),
+            (new HandlerFactory())->createWithScalarOutput($browserRunnerClientOutput)
+        );
 
-        $browserRunnerClient->request(sprintf(
-            './bin/runner --path=%s/%s',
-            self::COMPILER_TARGET_PATH,
-            basename($testPath)
-        ));
-
-        $outputContent = $browserRunnerClientOutput->fetch();
+        $outputContent = $browserRunnerClientOutput;
 
         $outputObject = Output::fromString($outputContent);
         self::assertSame(0, $outputObject->getExitCode());
@@ -70,17 +71,19 @@ class DockerImageTest extends TestCase
 
     private function compileSource(string $source): SuiteManifest
     {
-        $output = new BufferedOutput();
+        $output = '';
         $compilerClient = Client::createFromHostAndPort('localhost', self::COMPILER_PORT);
-        $compilerClient = $compilerClient->withOutput($output);
 
-        $compilerClient->request(sprintf(
-            './compiler --source=%s --target=%s',
-            $source,
-            self::COMPILER_TARGET_PATH
-        ));
+        $compilerClient->request(
+            sprintf(
+                './compiler --source=%s --target=%s',
+                $source,
+                self::COMPILER_TARGET_PATH
+            ),
+            (new HandlerFactory())->createWithScalarOutput($output)
+        );
 
-        $output = Output::fromString($output->fetch());
+        $output = Output::fromString($output);
         if (0 !== $output->getExitCode()) {
             throw new \RuntimeException($output->getContent(), $output->getExitCode());
         }
